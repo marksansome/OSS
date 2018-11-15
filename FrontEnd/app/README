@@ -1,0 +1,6 @@
+Run this app:
+
+1) Open terminal > Go into app folder
+2) Type: npm start > This will start the node application on port 8000
+3) Go on your browser and type: localhost:8000
+4) This will give the html file
