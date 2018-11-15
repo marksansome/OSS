@@ -52,3 +52,5 @@ CREATE TABLE MAPPED_DC (
 --INSERT INTO USERS VALUES ('12', 'Kevin', 'kevin', 'password');
 --INSERT INTO LOCATIONS VALUES ('1', '12', 'park', NULL);
 --INSERT INTO DISPLAYS VALUES (nextval('displays_display_id_seq'), '1', 'display1', NULL);
+
+
