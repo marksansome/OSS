@@ -48,7 +48,6 @@ CREATE TABLE MAPPED_DC (
     FOREIGN KEY (content_id) REFERENCES CONTENT (content_id)
 );
 
-
 -- Test inserts
 --INSERT INTO USERS VALUES ('12', 'Kevin', 'kevin', 'password');
 --INSERT INTO LOCATIONS VALUES ('1', '12', 'park', NULL);
