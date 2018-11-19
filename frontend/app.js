@@ -14,9 +14,9 @@ app.get('/', (req, res) => {
 /**
  * send js file
  */
-// app.get('/js', (req, res) => {
-//     res.sendFile(path.join(__dirname+'/js/index.js'))
-// });
+app.get('/js', (req, res) => {
+    res.sendFile(path.join(__dirname+'/js/index.js'))
+});
 
 /**
  * send css file
