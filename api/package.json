@@ -1,0 +1,22 @@
+{
+  "name": "oss-api",
+  "version": "1.0.0",
+  "description": "A RESTful API for the OpenSource Signage system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"ERROR: No tests found\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marksansome11/OSS.git"
+  },
+  "author": "OpenSource Signage",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marksansome11/OSS/issues"
+  },
+  "homepage": "https://github.com/marksansome11/OSS#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
