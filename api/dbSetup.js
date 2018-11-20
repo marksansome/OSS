@@ -1,11 +1,9 @@
 const dbConfig = {
-    user: config.db.user,
-    password: config.db.password,
-    database: config.db.database,
-    host: config.db.host,
-    port: config.db.port,
-    max: config.db.max,
-    idleTimeoutMillis: config.db.idleTimeoutMillis,
+    user: "pgadmin",
+    password: "docker",
+    database: "oss",
+    host: "localhost",
+    port: "5432"
 }
 
 const pool = new pg.Pool(dbConfig)
@@ -13,10 +11,6 @@ pool.on('error', function (err) {
     winston.error('idle client error', err.message, err.stack)
 })
 
-const pool = new Pool({
-    user: 'dbuser',
-    host: 'database.server.com',
-    database: 'mydb',
-    password: 'secretpassword',
-    port: 3211,
-})
+const client = await pool.connect()
+
+module.exports = client;
