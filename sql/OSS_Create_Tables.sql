@@ -16,7 +16,7 @@ CREATE TABLE LOCATIONS (
 );
 
 CREATE TABLE DISPLAYS (
-    display_id      VARCHAR NOT NULL,
+    display_id      SERIAL,
     display_name    VARCHAR,
     description     VARCHAR,
     PRIMARY KEY (display_id)
@@ -41,16 +41,19 @@ CREATE TABLE CONTENT (
 );
 
 CREATE TABLE MAPPED_DC (
-    display_id  VARCHAR NOT NULL,
+    display_id  SERIAL,
     content_id  VARCHAR NOT NULL,
     PRIMARY KEY (display_id, content_id),
     FOREIGN KEY (display_id) REFERENCES DISPLAYS (display_id),
     FOREIGN KEY (content_id) REFERENCES CONTENT (content_id)
 );
 
+
 -- Test inserts
 --INSERT INTO USERS VALUES ('12', 'Kevin', 'kevin', 'password');
 --INSERT INTO LOCATIONS VALUES ('1', '12', 'park', NULL);
---INSERT INTO DISPLAYS VALUES (nextval('displays_display_id_seq'), '1', 'display1', NULL);
--- END
+--INSERT INTO DISPLAYS VALUES (nextval('displays_display_id_seq'), 'display1', NULL);
 
+--drop schema oss cascade;
+--create schema oss;
+--set search_path to oss;
