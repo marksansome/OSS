@@ -6,6 +6,8 @@
 
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- Bootstrap js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,20 +18,18 @@
     <link rel="shortcut icon" href="http://www.iconj.com/ico/w/v/wvzsydc7rx.ico" type="image/x-icon" />
     <script src="/js"></script>
     <title>OSS</title>
+
+
 </head>
 <body>
 
 <!-- navigation bar -->
-
 <nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-                <h1>OpenSource Signage</h1>
+            <h1>OpenSource Signage</h1>
         </div>
         <ul class="nav navbar-nav navbar-right navbar-button">
-            <li>
-                <button class="btn btn-green"> Home</button>
-            </li>
             <li>
                 <button class="btn btn-green"> Settings</button>
             </li>
@@ -40,22 +40,47 @@
     </div>
 </nav>
 
+<!-- Breadcrumb Bar at top of view -->
+<div id="crumbBar"class="btn-group" style="width:100%">
+    <button id="locations-button"class="crumbButton">Locations</button>
+    <button id="crumb1"class="crumbTrail">></button>
+    <button id="displays-button" class="crumbButton">Displays</button>
+    <button id="crumb2"class="crumbTrail">></button>
+    <button id="content-button" class="crumbButton">Content</button>
+</div>
+
 <!-- Locations View -->
 
-<div class="panel panel-default">
-        <div class="panel-heading">Panel Heading</div>
-        <div class="panel-body">Panel Content</div>
-      </div>
+<div id="locations-view"class="view-panel">
 
-
-<ul class="breadcrumb">
-    <li><a href="#">Locations</a></li>
-    <li><a href="#">Displays</a></li>
-    <li><a href="#">Content</a></li>
-    <li><a href="#">Content Editor</a></li>
-</ul>
+    <!-- Panel content where cards are placed -->
+    <div class="panel-body">
+        <div class="card">
+            <button class="edit-button"><h4><i class="fas fa-pen"></i></button></h2>
+            <button class="card-button">
+                <h5 class="card-title">Bowser's Castle</h5>
+                <p class="card-text">Mario's Pizzeria</p>
+                <h2><i class="fas fa-map-marked-alt"></i></h4>
+            </button>
+        </div>
+    </div>
+</div>
 
 <!-- Display View -->
+<div id="displays-view" class="view-panel">
+    <!-- Panel content where cards are placed -->
+    <div class="panel-body">
+        <div class="card">
+            <button class="edit-button"><h4><i class="fas fa-pen"></i></button></h2>
+            <button class="card-button">
+                <h5 class="card-title">Bowser's Castle</h5>
+                <p class="card-text">Mario's Pizzeria</p>
+                <h2><i class="fas fa-map-marked-alt"></i></h4>
+            </button>
+        </div>
+    </div>
+</div>
+
 
 <!-- Content View -->
 
