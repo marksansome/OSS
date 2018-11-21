@@ -8,7 +8,7 @@ module.exports = function (app) {
         .post(locations.create_a_task);
 
 
-    app.route('/locations/:locationId')
+    app.route('/locations/:locationId');
     // .get(locations.read_a_task)
     // .put(locations.update_a_task)
     // .delete(locations.delete_a_task);
