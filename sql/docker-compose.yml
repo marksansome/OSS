@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+
+  db:
+    build: .
+    image: custom-postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: pgadmin
+      POSTGRES_DB: oss
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 3001:8080
