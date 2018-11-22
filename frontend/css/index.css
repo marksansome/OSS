@@ -1,0 +1,144 @@
+@media screen and (max-width: 992px) {
+    body {
+        background-color: white;
+    }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+    body {
+        background-color: white;
+    }
+}
+
+body {
+    width: 100%;
+    background-color: #f4cea5;
+}
+
+/**
+* Navigation bar starts
+*/
+.navbar{
+    background-color: #f39735;
+    color: #FFFFFF;
+    height: 15%;
+}
+
+.navbar-brand{
+    margin: 0px;
+    color: #FFFFFF;
+    font-size: 30px;
+}
+
+.navbar-button{
+    margin: 20px;
+}
+
+.navbar-button button{
+    margin: 10px;
+}
+
+.btn-green {
+    font-size: 20px;
+    color: #FFFFFF;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 12px;
+    background-color: #edac68;
+    border: 2px solid #FFFFFF;
+}
+
+.btn-green:hover {
+    color: #FFFFFF;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/* Navigation bar ends */
+
+/* Beginning of breadCrumb bar style */
+#crumbBar {
+    background: #f7ad5d;
+    padding-top: 120px;
+}
+
+.crumbButton {
+    font-size: 24px;
+    padding: 8px;
+    color: white;
+    border: none;
+    background: none;
+}
+
+
+
+.crumbTrail {
+    pointer-events: none;
+    font-size: 24px;
+    padding: 8px;
+    color: white;
+    border: none;
+    background: none;
+}
+
+.crumbButton:hover {
+    color: #b77126;
+}
+
+.crumbButton:disabled {
+    color: black;
+}
+
+/* End of breadCrumb bar style */
+
+.panel-body {
+    width: 100%;
+    height:1000px;
+    background-color:none;
+}
+
+/* Beginning of card style */
+
+.card {
+    width: 240px;
+    padding: 20px;
+    background-color: azure;
+    box-shadow: 4px 4px 4px grey;
+    text-align: center
+    
+}
+
+.card-body {
+    display: inline-block
+}
+
+.card-button {
+    background: none;
+    border: none;
+    float: center;
+    transition: 0.2s;
+}
+.card-button:hover {
+    color: #f49e42;
+}
+.edit-button {
+    float: right;
+    background: none;
+    border: none;
+    transition: 0.2s;
+}
+.edit-button:hover {
+    color: #f49e42;
+}
+.location-icon {
+    position: relative;
+    bottom: 0;
+    left: 70%;
+}
+
+
+/* End of card style */
+
+.view-panel {
+    padding-top:10px;
+}

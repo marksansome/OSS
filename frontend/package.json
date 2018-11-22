@@ -1,0 +1,14 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Front end server and view for digital signage",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "ayush kaushik",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
