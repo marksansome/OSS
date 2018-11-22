@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 var path = require("path");
 const app = express();
 
@@ -7,9 +8,9 @@ const app = express();
  * send html file
  */
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname+'/html/frontView.html'))
-});
+    res.sendFile(path.join(__dirname+'/html/frontView.html'));
 
+});
 
 /**
  * send js file
