@@ -1,4 +1,5 @@
 // Dependencies
+//git push remote --setupstream
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -8,7 +9,7 @@ var db = require('./dbSetup');
 var LocalStrategy = require('passport-local').Strategy;
 const port = process.env.PORT || 3000;
 
-// Initalize
+// Initalize perfect headly 
 app = express();
 
 app.use(bodyParser.json());
@@ -71,10 +72,12 @@ router.get('/', function (req, res) {
 });
 
 var routes = require('./routes/index.js');
+var locations = require('./routes/locationsRoute.js');
 // var users = require('./routes/usersRoute');
-
+app.use('/api', locations);
 app.use('/api', routes);
 app.use('/api', router);
+
 
 app.get('*', function (req, res) {
     res.status(404).send('invalid route');
