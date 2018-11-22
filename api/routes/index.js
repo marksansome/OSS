@@ -1,5 +1,7 @@
 const express = require('express');
 const passport = require('passport');
+const db = require('../dbSetup')
+const bcrypt = require('bcrypt');
 const router = express.Router();
 
 
@@ -12,52 +14,40 @@ router.post('/register', (req, res, next) => {
 
 
     try {
-        const client = pool.connect()
-        client.query('BEGIN')
-        var pwd = bcrypt.hash(req.body.password, 5);
-        JSON.stringify(client.query('SELECT user_id FROM USERS WHERE username=$1', [req.body.username], function (err, result) {
-            if (result.rows[0]) {
-                res.status(403).send("user already exists");
-                return;
-            }
-            else {
-                client.query('INSERT INTO USERS (user_id, display_name, username, password) VALUES ($1, $2, $3, $4, $5)', [DEFAULT, req.body.displayName, req.body.username, pwd], function (err, result) {
-                    if (err) { console.log(err); }
-                    else {
-
-                        client.query('COMMIT')
-                        console.log(result)
-                        res.json({ message: 'new user created' });
-
-                        return;
+        console.log(req.body);
+        bcrypt.hash(req.body.password, 5, (err, hash) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("server not okay");
+            } else {
+                JSON.stringify(db.query('SELECT user_id FROM USERS WHERE username=$1', [req.body.username], (err, result) => {
+                    if (result.rows[0]) {
+                        res.status(403).send("user already exists");
                     }
-                });
+                    else {
+                        db.query('INSERT INTO USERS (display_name, username, password) VALUES ($1, $2, $3)', [req.body.displayName, req.body.username, hash], (err, result) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                db.query('COMMIT', [], (err, result) => { });
+                                console.log(result);
 
-
+                                req.session.save((err) => {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                    res.status(200).send("new user created. logged in");
+                                });
+                                return;
+                            }
+                        });
+                    }
+                }));
             }
-
-        }));
-        client.release();
+        });
+    } catch (e) {
+        throw (e);
     }
-    catch (e) { throw (e) }
-
-
-
-
-    // TODO: make account here
-    // Account.register(new Account({ username: req.body.username }), req.body.password, (err, account) => {
-    //     if (err) {
-    //         return res.render('register', { error: err.message });
-    //     }
-    //     passport.authenticate('local')(req, res, () => {
-    //         req.session.save((err) => {
-    //             if (err) {
-    //                 return next(err);
-    //             }
-    //             res.redirect('/');
-    //         });
-    //     });
-    // });
 });
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
@@ -65,7 +55,7 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
         if (err) {
             return next(err);
         }
-        res.redirect('/');
+        res.status(200).send("logged in");
     });
 });
 
@@ -75,7 +65,6 @@ router.get('/logout', (req, res, next) => {
         if (err) {
             return next(err);
         }
-        res.redirect('/');
     });
 });
 
