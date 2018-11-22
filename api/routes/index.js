@@ -5,14 +5,7 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 
 
-// router.get('/', (req, res) => {
-//     // res.send('response');
-//     res.json({ message: 'hooray! welcome to the OSS api!' });
-// });
-
 router.post('/register', (req, res, next) => {
-
-
     try {
         console.log(req.body);
         bcrypt.hash(req.body.password, 5, (err, hash) => {
