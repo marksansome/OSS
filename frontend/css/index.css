@@ -1,16 +1,3 @@
-@media screen and (max-width: 992px) {
-    body {
-        background-color: white;
-    }
-}
-
-/* On screens that are 600px or less, set the background color to olive */
-@media screen and (max-width: 600px) {
-    body {
-        background-color: white;
-    }
-}
-
 body {
     width: 100%;
     background-color: #f4cea5;
@@ -19,27 +6,27 @@ body {
 /**
 * Navigation bar starts
 */
-.navbar{
+.navbar {
     background-color: #f39735;
     color: #FFFFFF;
     height: 15%;
 }
 
-.navbar-brand{
+.navbar-brand {
     margin: 0px;
     color: #FFFFFF;
     font-size: 30px;
 }
 
-.navbar-button{
+.navbar-button {
     margin: 20px;
 }
 
-.navbar-button button{
+.navbar-button button {
     margin: 10px;
 }
 
-.btn-green {
+.btn-nav {
     font-size: 20px;
     color: #FFFFFF;
     padding-right: 20px;
@@ -49,14 +36,15 @@ body {
     border: 2px solid #FFFFFF;
 }
 
-.btn-green:hover {
+.btn-nav:hover {
     color: #FFFFFF;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Navigation bar ends */
 
 /* Beginning of breadCrumb bar style */
+
 #crumbBar {
     background: #f7ad5d;
     padding-top: 120px;
@@ -69,8 +57,6 @@ body {
     border: none;
     background: none;
 }
-
-
 
 .crumbTrail {
     pointer-events: none;
@@ -93,8 +79,8 @@ body {
 
 .panel-body {
     width: 100%;
-    height:1000px;
-    background-color:none;
+    height: auto;
+    background-color: none;
 }
 
 /* Beginning of card style */
@@ -104,41 +90,57 @@ body {
     padding: 20px;
     background-color: azure;
     box-shadow: 4px 4px 4px grey;
-    text-align: center
-    
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
 }
 
 .card-body {
-    display: inline-block
+    display: inline-block;
 }
 
 .card-button {
     background: none;
-    border: none;
+    border: 2px solid #3AAF5E;
+    color: #FFFFFF;
+    background-color: #3FCE6B;
     float: center;
     transition: 0.2s;
+    margin: 4px;
+    width: 110px;
 }
+
 .card-button:hover {
-    color: #f49e42;
+    color: #FFFFFF;
+    background-color: #3AAF5E;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
 .edit-button {
-    float: right;
+    float: center;
     background: none;
-    border: none;
+    border: 2px solid #f49e42;
+    background-color: #edac68;
+    color: #FFFFFF;
     transition: 0.2s;
+    margin: 4px;
+    width: 110px;
 }
+
 .edit-button:hover {
-    color: #f49e42;
+    color: #FFFFFF;
+    background-color: #f49e42;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
 .location-icon {
     position: relative;
     bottom: 0;
     left: 70%;
 }
 
-
 /* End of card style */
 
 .view-panel {
-    padding-top:10px;
+    padding-top: 10px;
 }
