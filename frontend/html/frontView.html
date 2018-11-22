@@ -19,7 +19,6 @@
     <script src="/js"></script>
     <title>OSS</title>
 
-
 </head>
 <body>
 
@@ -31,10 +30,10 @@
         </div>
         <ul class="nav navbar-nav navbar-right navbar-button">
             <li>
-                <button class="btn btn-green"> Settings</button>
+                <button class="btn btn-nav"> Settings</button>
             </li>
             <li>
-                <button class="btn btn-green"> Logout</button>
+                <button class="btn btn-nav"> Logout</button>
             </li>
         </ul>
     </div>
@@ -53,16 +52,7 @@
 
 <div id="locations-view"class="view-panel">
     <!-- Panel content where cards are placed -->
-    <div class="panel-body">
-        <div class="card">
-            <div class="card-body">
-                    <h5 class="card-title">Location: Mario's Pizzeria</h5>
-                    <p class="card-text">Address: Bowser's Castle</p>
-            <button class="btn btn-primary">View Location</button>
-            <button class="btn btn-secondary">Edit</button>
-            </div>
-        </div>
-    </div>
+    <div class="panel-body" id="location-panel"></div>
 </div>
 
 <!-- Display View -->
@@ -96,5 +86,10 @@
     </div>
 </div>
 <!-- Content Editor -->
+
+
+<!-- Edit Display Modal -->
+<div id="testModal" class="modal fade" role="dialog"></div>
+
 </body>
 </html>
