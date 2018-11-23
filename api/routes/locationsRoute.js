@@ -2,15 +2,29 @@ const express = require('express');
 const passport = require('passport');
 const db = require('../dbSetup')
 const bcrypt = require('bcrypt');
-
+const locationsController = require('../controllers/locationsController');
 const router = express.Router();
 
 router.get('/locations', (req, res, next) => {
+    
+    if (req.user == null) {
+        res.status(500).send("Error - cannot GET locations: no valid account found. Please sign in first.");
+    }
+    else {
+        let user = req.user; 
+        let userID = user[0]["userID"];
+        let displayName = user[0]["displayName"];
 
-    console.log("getting all locations for this user");
+        let locationsJson = locationsController.getLocations(userID);
 
-    res.status(200).send("locations API hit");
+
+
+        res.status(200).send([userID, displayName]);
+    }
 });
+
+
+
 
 //Hit like http://localhost:3000/api/getLocation/your_id_here
 router.get('/getLocation/:id', (req, res, next) => {

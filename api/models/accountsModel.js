@@ -43,13 +43,14 @@ module.exports = function (app) {
         res.render('join', { title: "Join", userData: req.user, messages: { danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success') } });
     });
 
-
     app.post('/join', async function (req, res) {
 
         try {
+            
             const client = await pool.connect()
             await client.query('BEGIN')
             var pwd = await bcrypt.hash(req.body.password, 5);
+
             await JSON.stringify(client.query('SELECT id FROM "users" WHERE "email"=$1', [req.body.username], function (err, result) {
                 if (result.rows[0]) {
                     req.flash('warning', "This email address is already registered. <a href='/login'>Log in!</a>");

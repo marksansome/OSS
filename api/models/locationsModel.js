@@ -1,31 +1,39 @@
-var AccountModel = function(user_id, display_name, username) {
-	this.user_id = user_id; 
-	this.email = email; 
-	this.username = username; 
-	this.firstname = firstname;  
-	this.lastname = lastname; 
-	this.display_name = display_name; 
-	this.password = password;
-}
+const db = require('../dbSetup');
+var request = require('request');
+const { Pool, Client } = require('pg');
 
-AccountModel.prototype.getUser_id = function() { 
-	return user_id; 
-}; 
-AccountModel.prototype.getEmail = function()  {
-	return email; 
-};
-AccountModel.prototype.getUsername = function() {
-	return username; 
-};
-AccountModel.prototype.getFirstname = function() {
-	return firstname; 
-};
-AccountModel.prototype.getLastname = function() {
-	return lastname; 
-};
-AccountModel.prototype.getDisplay_name = function() {
-	return display_name; 
-};
-AccountModel.prototype.getPassword = function() {
-	return password; 
-};
+const pool = new Pool({
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: process.env.PGPORT,
+    ssl: true
+});
+
+
+module.exports = { 
+
+	getAllLocationsForUser:  function(userID) {
+	
+
+		console.log("model getting" + userID);
+    	const client =  pool.connect();
+         client.query('BEGIN')
+
+		console.log("is this happening? 1");
+
+
+		 client.query('SELECT * FROM "locations" WHERE "user_id"=$1', [userID], function (err, result) {
+					console.log("is this happening? 2");
+	    	  if (result.rows[0]) {
+	    	      console.log("no locations found");
+	    	  }
+	    	  else {
+	    	      console.log(result.rows[0]);
+	    	      return result.rows;
+	    	  }
+	    }); 
+
+	}
+}

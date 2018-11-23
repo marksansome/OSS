@@ -9,9 +9,9 @@ var db = require('./dbSetup');
 var LocalStrategy = require('passport-local').Strategy;
 const port = process.env.PORT || 3000;
 
-// Initalize perfect headly 
-app = express();
 
+// Initalize perfect headly 
+var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('express-session')({
@@ -21,6 +21,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // passport 
 passport.use(new LocalStrategy(
