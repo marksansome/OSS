@@ -1,22 +1,11 @@
 $(document).ready(function() {
+  
   getLocationList();
-
-  /**
-   * When application loads
-   */
-  $("#locations-view").show();
-  $("#displays-view").hide();
-  $("#content-view").hide();
+  locationViewActive();
 
   $("#locations-button").click(function() {
-    alert('Locations will change');
-    $("#locations-view").show();
-    $("#displays-view").hide();
-    $("#content-view").hide();
-
-    $("#locations-button").attr("disabled", false);
-    $("#displays-button").attr("disabled", true);
-    $("#content-button").attr("disabled", true);
+    getLocationList();
+    locationViewActive();
   });
 
   $("#displays-button").click(function() {
@@ -24,12 +13,51 @@ $(document).ready(function() {
     $("#displays-view").show();
 
     $("#content-button").hide();
-    $("#displays-button").attr("disabled", true);
+    $("#displays-button").attr("disabled", false);
+    $("#content-button").attr("disabled", false);
     $("#crumb1").show();
     $("#crumb2").hide();
   });
+
+  $("#content-button").click(function() {
+
+  });
 });
 
+function locationViewActive() {
+  $("#locations-view").show();
+  $("#displays-view").hide();
+  $("#content-view").hide();
+
+  $("#locations-button").attr("disabled", true);
+  $("#displays-button").attr("disabled", false);
+  $("#content-button").attr("disabled", false);
+  $("#displays-button").hide();
+  $("#content-button").hide();
+  $("#crumb1").hide();
+  $("#crumb2").hide();
+}
+
+function displayViewActive() {
+  $("#locations-view").hide();
+  $("#displays-view").hide();
+  $("#content-view").show();
+  $("#locations-button").attr("disabled", false);
+  $("#displays-button").attr("disabled", true);
+  $("#content-button").attr("disabled", false);
+  $("#displays-button").hide();
+  $("#crumb1").show();
+  $("#crumb2").show();
+}
+
+function contentViewActive() {
+  $("#locations-view").hide();
+  $("#displays-view").hide();
+  $("#content-view").show();
+  $("#locations-button").attr("disabled", false);
+  $("#displays-button").attr("disabled", false);
+  $("#content-button").attr("disabled", true);
+}
 
 function createModal(obj) {
   console.log('Object received');
@@ -182,7 +210,7 @@ function createRow(){
 }
 
 
-function getDisplayList(locationId){
+function getDisplayList(locationId) {
 
   /**
    * Crumb Trail Changes
