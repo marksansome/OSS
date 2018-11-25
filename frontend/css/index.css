@@ -6,10 +6,13 @@ body {
 /**
 * Navigation bar starts
 */
-.navbar {
+
+/**
+* This gets the Open Source Signage main div
+*/
+.navbar > div:first-of-type {
     background-color: #f39735;
     color: #FFFFFF;
-    height: 15%;
 }
 
 .navbar-brand {
@@ -44,22 +47,17 @@ body {
 /* Navigation bar ends */
 
 /* Beginning of breadCrumb bar style */
-
-#crumbBar {
+.navbar > div:nth-of-type(2){
+    width: 100%;
     background: #f7ad5d;
-    padding-top: 120px;
+}
+
+.crumbBar {
+    background: #f7ad5d;
+    padding-top: 200px;
 }
 
 .crumbButton {
-    font-size: 24px;
-    padding: 8px;
-    color: white;
-    border: none;
-    background: none;
-}
-
-.crumbTrail {
-    pointer-events: none;
     font-size: 24px;
     padding: 8px;
     color: white;
@@ -72,8 +70,20 @@ body {
 }
 
 .crumbButton:disabled {
-    color: black;
+    color: #808080;
 }
+
+
+.crumbTrail {
+    pointer-events: none;
+    font-size: 24px;
+    padding: 8px;
+    color: white;
+    border: none;
+    background: none;
+}
+
+
 
 /* End of breadCrumb bar style */
 
@@ -140,7 +150,6 @@ body {
 }
 
 /* End of card style */
-
 .view-panel {
-    padding-top: 10px;
+    padding-top: 150px;
 }

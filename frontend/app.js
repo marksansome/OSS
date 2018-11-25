@@ -26,17 +26,26 @@ app.get("/css", (req, res) => {
 
 
 app.get("/location-list", (req,res) => {
-
   axios.get('http://localhost:6000/locationlist')
     .then(response => {
-        console.log(response.data);
         res.send(response.data);
     })
     .catch(error => {
         console.log(error);
         res.status(500).send([]);
     });
+});
 
+
+app.get("/display-list/:locationId", (req,res) => {
+  axios.get('http://localhost:6000/displayList/' + req.params.locationId )
+    .then(response => {
+        res.send(response.data);
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).send([]);
+    });
 });
 
 
