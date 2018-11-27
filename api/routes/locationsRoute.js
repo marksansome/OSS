@@ -9,20 +9,48 @@ router.get('/locations', (req, res, next) => {
     
     if (req.user == null) {
         res.status(500).send("Error - cannot GET locations: no valid account found. Please sign in first.");
-    }
-    else {
+    } else {
         let user = req.user; 
         let userID = user[0]["userID"];
         let displayName = user[0]["displayName"];
 
-        let locationsJson = locationsController.getLocations(userID);
+        let locationsJson = locationsController.getLocations(userID).then((result)=> {
+            // .then happens when the promise is resolved. 
+            // I don't know if this can be done better with await, but this is how I know how to do it
+            // Love Hugo
+            console.log("Result = " + locationsJson);
 
-
-
-        res.status(200).send([userID, displayName]);
+            res.status(200).send(result);
+        });
     }
 });
 
+router.post('/createLocation', (req, res, next) => {
+
+    if (req.user == null) {
+        res.status(500).send("Error - cannot GET locations: no valid account found. Please sign in first.");
+    } else {
+
+        let user = req.user; 
+        let userID = user[0]["userID"];
+        let displayName = user[0]["displayName"];
+
+        let newLocation = req.body["locations"]; 
+
+        if (newLocation) {
+      
+            console.log("create location with user ID" + userID);
+            let response = locationsController.createLocation(userID, newLocation).then((result) => {
+                res.status(200).send(result);
+            }); 
+        }
+        else {
+             res.status(500).send("Error: No 'locations' key found in body of request for /createlocation");
+         }
+
+
+    }
+}); 
 
 
 

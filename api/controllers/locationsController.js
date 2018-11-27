@@ -1,19 +1,23 @@
 const model = require('../models/locationsModel');
+
 module.exports = { 
-	getLocations: function(userID) 
+	 getLocations: async function(userID) 
 	{
-		console.log("controller" + userID);
-		var data = model.getAllLocationsForUser(userID);
-		console.log(data);
-		return data; 
+		/* Getting result from database call */ 
+		var result = await model.getAllLocationsForUser(userID);
+		
+		console.log(result);
+
+		return result;
 
 	},
-	getLocationsWithID(userID, locationID) 
+	createLocation: async function(userID, newLocation) 
 	{
-		//TODO: Get the Location ID from the request body
-		//TODO: call the locations model method with the ID, return specific location and its displays
-		//TODO: process returned data structure into a json format
-		//TODO: return the json
-		console.log(userID, locationID);
+		console.log("creating location with ID" + userID + "newLocation" + newLocation);
+
+		var SubmittedLocation = await model.createLocation(userID, newLocation);
+
+		//Current just returns success message, future support to be added
+		return SubmittedLocation; 
 	}
 }
