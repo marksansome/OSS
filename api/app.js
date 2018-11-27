@@ -74,10 +74,12 @@ router.get('/', function (req, res) {
 
 var routes = require('./routes/index.js');
 var locations = require('./routes/locationsRoute.js');
+var displays = require('./routes/displaysRoute.js');
 // var users = require('./routes/usersRoute');
 app.use('/api', locations);
 app.use('/api', routes);
 app.use('/api', router);
+app.use('/api', displays);
 
 
 app.get('*', function (req, res) {

@@ -8,16 +8,14 @@ const router = express.Router();
 router.get('/locations', (req, res, next) => {
     
     if (req.user == null) {
-        res.status(500).send("Error - cannot GET locations: no valid account found. Please sign in first.");
+        res.status(500).send("Error - cannot GET /locations: no valid account found. Please sign in first.");
     } else {
         let user = req.user; 
         let userID = user[0]["userID"];
         let displayName = user[0]["displayName"];
 
         let locationsJson = locationsController.getLocations(userID).then((result)=> {
-            // .then happens when the promise is resolved. 
-            // I don't know if this can be done better with await, but this is how I know how to do it
-            // Love Hugo
+          
             console.log("Result = " + locationsJson);
 
             res.status(200).send(result);
@@ -25,10 +23,41 @@ router.get('/locations', (req, res, next) => {
     }
 });
 
+/* It will only get the location with the ID that you provide if your AccountID matches that of the location*/
+router.get('/locationWithId', (req, res, next) => { 
+
+     if (req.user == null) {
+        res.status(500).send("Error - cannot GET /locationWithID: no valid account found. Please sign in first.");
+    } else {
+        let user = req.user; 
+        let userID = user[0]["userID"];
+        let displayName = user[0]["displayName"];
+
+        let locationID = req.body["location_id"];
+        console.log(locationID);
+
+        /* If the API caller provided a locationID in the body */
+        if (locationID)  { 
+            let LocationJson = locationsController.getLocationWithID(userID, locationID).then((result)=> {
+             
+                console.log("Result = " + LocationJson);
+
+                res.status(200).send(result);
+            });
+
+        } 
+        /* If the API caller DID NOT provide a locationID in the body */
+        else { 
+             res.status(500).send("Error: No 'location_id' key found in body of request for /locationWithID");
+        }
+
+    }
+});
+
 router.post('/createLocation', (req, res, next) => {
 
     if (req.user == null) {
-        res.status(500).send("Error - cannot GET locations: no valid account found. Please sign in first.");
+        res.status(500).send("Error - cannot POST /createLocation: no valid account found. Please sign in first.");
     } else {
 
         let user = req.user; 
@@ -47,8 +76,6 @@ router.post('/createLocation', (req, res, next) => {
         else {
              res.status(500).send("Error: No 'locations' key found in body of request for /createlocation");
          }
-
-
     }
 }); 
 

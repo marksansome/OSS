@@ -1,7 +1,7 @@
 const model = require('../models/locationsModel');
 
 module.exports = { 
-	 getLocations: async function(userID) 
+	getLocations: async function(userID) 
 	{
 		/* Getting result from database call */ 
 		var result = await model.getAllLocationsForUser(userID);
@@ -19,5 +19,18 @@ module.exports = {
 
 		//Current just returns success message, future support to be added
 		return SubmittedLocation; 
+	},
+	getLocationWithID: async function(userID, locationID) {
+		console.log("Searching for Location ID#"+locationID + " under userID " + userID); 
+
+		var Location = await model.getLocationWithID(userID, locationID);
+
+		return Location;
+
 	}
+
+
+
+
 }
+
