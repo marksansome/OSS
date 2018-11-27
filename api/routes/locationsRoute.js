@@ -57,7 +57,7 @@ router.get('/locations/:id', (req, res, next) => {
         let userID = user[0]["userID"];
         let displayName = user[0]["displayName"];
 
-        let locationID = req.param.id;
+        let locationID = req.params.id;
         console.log(locationID);
 
         /* If the API caller provided a locationID in the body */

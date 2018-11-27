@@ -57,7 +57,31 @@ module.exports = {
             db.query('SELECT * FROM locations WHERE user_id=$1 AND location_id=$2', [userID, locationID], function (err, result) {
                 console.log(result);
                 console.log(err);
-                resolve(JSON.stringify(result.rows));
+
+                let location = result.rows[0];
+                let name = location['location_name'];
+                let desc = location['description'];
+
+                db.query('SELECT * FROM DISPLAYS NATURAL JOIN (SELECT display_id FROM MAPPED_LD NATURAL JOIN LOCATIONS WHERE location_id = $1) as t1;', [locationID], function (err, result) {
+                        
+                       let displays = result.rows;
+
+                       let responseJson = { 
+                            "locations" : {
+                                "location_id" : locationID, 
+                                "name" : name, 
+                                "details" : desc, 
+                                "displays" : displays
+                            }
+
+                       }
+                       resolve(responseJson);
+
+
+                });
+
+
+
             });
 
 
