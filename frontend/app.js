@@ -24,7 +24,6 @@ app.get("/css", (req, res) => {
   res.sendFile(path.join(__dirname + "/css/index.css"));
 });
 
-
 app.get("/location-list", (req,res) => {
   axios.get('http://localhost:6000/locationlist')
     .then(response => {
@@ -35,7 +34,6 @@ app.get("/location-list", (req,res) => {
         res.status(500).send([]);
     });
 });
-
 
 app.get("/display-list/:locationId", (req,res) => {
   axios.get('http://localhost:6000/displayList/' + req.params.locationId )
@@ -48,11 +46,16 @@ app.get("/display-list/:locationId", (req,res) => {
     });
 });
 
-
-
-
-
-
+app.get("/content-list/:displayId", (req,res) => {
+  axios.get('http://localhost:6000/contentlist/' + req.params.displayId )
+    .then(response => {
+        res.send(response.data);
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).send([]);
+    });
+});
 
 app.listen(8000, () => {
   console.log("Example app listening on port 8000!");

@@ -71,7 +71,7 @@ app.get("/locationlist", (req, res) => {
 
 app.get("/displaylist/:location_id", (req, res) => {
   let location_id = req.params.location_id;
-  
+
   let displayList = {
     locationId: 0,
     display: [
@@ -112,6 +112,53 @@ app.get("/displaylist/:location_id", (req, res) => {
    * create a bunch of those displays and populate the information
    **/
   res.send(displayList);
+});
+
+app.get("/contentlist/:display_id", (req, res) => {
+  let display_id = req.params.display_id;
+  
+  let contentList = {
+    displayId: 0,
+    content: [
+      {
+        id: 0,
+        name: "lunch menu",
+        description: "Monitor above counter",
+        html_code:
+          "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Lunch menu</h1>\n\n<p>Menu</p>\n\n</body>\n</html>"
+      },
+      {
+        id: 1,
+        name: "breakfast",
+        description: "Monitor at entrance",
+        html_code:
+          "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Lunch menu</h1>\n\n<p>Menu</p>\n\n</body>\n</html>"
+      },
+      {
+        id: 2,
+        name: "dinner",
+        description: "Monitor behind customer table",
+        html_code:
+          "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Lunch menu</h1>\n\n<p>Menu</p>\n\n</body>\n</html>"
+      },
+      {
+        id: 3,
+        name: "evening snacks",
+        description: "I ran out of places where monitor could be",
+        html_code:
+          "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Lunch menu</h1>\n\n<p>Menu</p>\n\n</body>\n</html>"
+      },
+      {
+        id: 4,
+        name: "Damn yall eat a lot",
+        description: "Monitor where it should be",
+        html_code:
+          "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Lunch menu</h1>\n\n<p>Menu</p>\n\n</body>\n</html>"
+      }
+    ]
+  };
+
+  res.send(contentList);
 });
 
 app.listen(6000, () => {

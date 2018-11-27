@@ -135,13 +135,14 @@ let displayCardElement = {
   }
 }
 
+
 function createDisplayCard(dispObj) {
   let card = '<div class="col-md-3 col-sm-6">'
             + '<div class="card">'
             +'<div class="card-body">'
             +'<h5 class="card-title" id ="disp-name-'+ dispObj.id  + '">Display: ' + dispObj.name + '</h5>' 
             +'<p class="card-text" id ="disp-desc-'+ dispObj.id  + '">Description: ' + dispObj.description + '</p>' 
-            +'<button class="btn card-button">View Display</button>'
+            +'<button class="btn card-button" onClick="getContentList('+ dispObj.id +')">View Display</button>'
             +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="createModal()">Edit</button>' 
             + '</div>' 
             +'</div>'
@@ -150,7 +151,38 @@ function createDisplayCard(dispObj) {
   return card;
 }
 
+let contentElement = {
+  type: "cont",
+  title: "Content",
+  text: "Description",
+  button: {
+    btn1 : "View",
+    btn2 : "Edit"
+  }
+}
+
+function createContentCard(contObj) {
+  let card = '<div class="col-md-3 col-sm-6">'
+            + '<div class="card">'
+            +'<div class="card-body">'
+            +'<h5 class="card-title" id ="cont-name-'+ contObj.id  + '">Content: ' + contObj.name + '</h5>' 
+            +'<p class="card-text" id ="cont-desc-'+ contObj.id  + '">Description: ' + contObj.description + '</p>' 
+            +'<button class="btn card-button">View Content</button>'
+            +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="createModal()">Edit</button>' 
+            + '</div>' 
+            +'</div>'
+            +'</div>';
+  
+  return card;
+}
+
+
 function getLocationList() {
+  /**
+   * Clear the previous cards on the view
+   */
+  document.getElementById('location-panel').innerHTML = "";
+
 
   $.ajax({
     url: "/location-list",
@@ -158,7 +190,6 @@ function getLocationList() {
     dataType: "json",
     processData: false,
     success: success => {
-
       let location_panel = document.getElementById('location-panel');
       let newRow = false;
 
@@ -197,10 +228,8 @@ function getLocationList() {
 }
 
 function appendCard(row){
-  console.log("append card");
   let card = createLocationCard(item);
   row.innerHTML = row.innerHTML + card;
-
 }
 
 function createRow(){
@@ -211,6 +240,10 @@ function createRow(){
 
 
 function getDisplayList(locationId) {
+  /**
+   * Clear the previous cards on the view
+   */
+  document.getElementById('display-panel').innerHTML = "";
 
   /**
    * Crumb Trail Changes
@@ -228,15 +261,12 @@ function getDisplayList(locationId) {
     dataType: "json",
     processData: false,
     success: success => {
-
-      let di = document.getElementById('display-panel');
       let newRow = false;
 
       counter = 1;
       let row = createRow();
 
-      let location_panel = document.getElementById("display-panel");
-
+      let display_panel = document.getElementById("display-panel");
       let displayList = success.display;
 
        for(let item of displayList){
@@ -247,10 +277,10 @@ function getDisplayList(locationId) {
             /**
              * placement of new row and cards in it
              */
-            let location_panel = document.getElementById("display-panel");
+            let display_panel = document.getElementById("display-panel");
             let card = createDisplayCard(item);
             row.innerHTML = row.innerHTML + card;
-            $(location_panel).append(row);
+            $(display_panel).append(row);
           }
           else {
             newRow = false;
@@ -259,6 +289,60 @@ function getDisplayList(locationId) {
              * placement of cards in previously created row
              */
             let card = createDisplayCard(item);
+            row.innerHTML = row.innerHTML + card;
+          }
+          
+          counter++;
+       }
+    },
+    error: error => {
+      console.log(error);
+    }
+  });
+}
+
+function getContentList(displayId){
+  /**
+   * Clear the previous cards on the view
+   */
+  document.getElementById('content-panel').innerHTML = "";
+
+  $("#locations-view").hide();
+  $("#displays-view").hide();
+  $("#content-view").show();
+
+  $.ajax({
+    url: "/content-list/" + displayId,
+    type: "GET",
+    dataType: "json",
+    processData: false,
+    success: success => {
+
+      let content_panel = document.getElementById('content-panel');
+      let newRow = false;
+      let contentList = success.content;
+
+      counter = 1;
+      let row = createRow();
+       for(let item of contentList){         
+          if(counter % 4 == 0){
+            newRow = true;
+
+            /**
+             * placement of new row and cards in it
+             */
+            let display = document.getElementById("content-panel");
+            let card = createContentCard(item);
+            row.innerHTML = row.innerHTML + card;
+            $(content_panel).append(row);
+          }
+          else {
+            newRow = false;
+
+            /**
+             * placement of cards in previously created row
+             */
+            let card = createContentCard(item);
             row.innerHTML = row.innerHTML + card;
           }
           
