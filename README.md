@@ -31,4 +31,4 @@ NOTE: Local environment does not store data persistently. When docker is shutdow
 
 ## View database with adminer
 
-You can view the db through a visual tool called adminer. To access it navigate to localhost:3001 while the local docker environment is running. Use the above database parameters to login.
+You can view the db through a visual tool called adminer. To access it navigate to localhost:3001 while the local docker environment is running. Use the above database parameters to login. 

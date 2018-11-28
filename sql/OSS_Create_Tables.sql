@@ -10,6 +10,7 @@ CREATE TABLE LOCATIONS (
     location_id     SERIAL,
     user_id         SERIAL,
     location_name   VARCHAR,
+    address         VARCHAR,
     description     VARCHAR,
     PRIMARY KEY (location_id),
     FOREIGN KEY (user_id) REFERENCES USERS (user_id)
@@ -19,6 +20,7 @@ CREATE TABLE DISPLAYS (
     display_id      SERIAL,
     display_name    VARCHAR,
     description     VARCHAR,
+    content         VARCHAR,
     PRIMARY KEY (display_id)
 );
 
@@ -32,21 +34,21 @@ CREATE TABLE MAPPED_LD (
     FOREIGN KEY (display_id) REFERENCES DISPLAYS (display_id)
 );
 
-CREATE TABLE CONTENT (
-    content_id      SERIAL,
-    content_name    VARCHAR,
-    description     VARCHAR,
-    html_code       VARCHAR,
-    PRIMARY KEY (content_id)
-);
+-- CREATE TABLE CONTENT (
+--     content_id      SERIAL,
+--     content_name    VARCHAR,
+--     description     VARCHAR,
+--     html_code       VARCHAR,
+--     PRIMARY KEY (content_id)
+-- );
 
-CREATE TABLE MAPPED_DC (
-    display_id  SERIAL,
-    content_id  SERIAL,
-    PRIMARY KEY (display_id, content_id),
-    FOREIGN KEY (display_id) REFERENCES DISPLAYS (display_id),
-    FOREIGN KEY (content_id) REFERENCES CONTENT (content_id)
-);
+-- CREATE TABLE MAPPED_DC (
+--     display_id  SERIAL,
+--     content_id  SERIAL,
+--     PRIMARY KEY (display_id, content_id),
+--     FOREIGN KEY (display_id) REFERENCES DISPLAYS (display_id),
+--     FOREIGN KEY (content_id) REFERENCES CONTENT (content_id)
+-- );
 
 
 -- Test inserts
