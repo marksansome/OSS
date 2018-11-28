@@ -71,6 +71,15 @@ span.psw {
     margin-top: 100px;
 }
 
+iframe {
+    width: 80%;
+    min-height: 300px;
+    border-radius: 10px;
+    border-style: solid;
+    margin: 10px;
+    background-color:white;
+}
+
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 500px) {
