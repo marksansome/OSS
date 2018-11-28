@@ -60,8 +60,10 @@ app.get("/location-list", (req,res) => {
 });
 
 app.get("/display-list/:locationId", (req,res) => {
+
   axios.get('http://localhost:6000/displayList/' + req.params.locationId )
     .then(response => {
+        console.log(response.data);
         res.send(response.data);
     })
     .catch(error => {

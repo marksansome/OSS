@@ -5,54 +5,40 @@ const app = express();
 app.get("/locationlist", (req, res) => {
   let locationList = [
     {
-      location_id: 1,
-      location_name: "Gino's Pizzeria",
-      description: "my description ... "
+      id: 0,
+      name: "Gino's Pizzeria",
+      address: "Mankato Mississippi",
+      details: "(468) 353-2641"
     },
     {
-      location_id: 2,
-      location_name: "Big Bear",
-      description: "my description ... "
+      id: 1,
+      name: "Big Bear",
+      address: "Roseville NH 11523",
+      details: "(793) 151-6230"
     },
     {
-      location_id: 3,
-      location_name: "Super Store",
-      description: "my description ... "
+      id: 2,
+      name: "Super Store",
+      address: "Corona New Mexico",
+      details: "(372) 587-2335"
     },
     {
-      location_id: 3,
-      location_name: "Kelseys",
-      description: "my description ... "
+      id: 3,
+      name: "Kelseys",
+      address: "Santa Rosa MN",
+      details: "(684) 579-1879"
     },
     {
-      location_id: 3,
-      location_name: "Super Store",
-      description: "my description ... "
+      id: 4,
+      name: "Super Store",
+      address: "Erie Rhode Island",
+      details: "(660) 663-4518"
     },
     {
-      location_id: 3,
-      location_name: "Super Store",
-      description: "my description ... "
-    },
-    {
-      location_id: 3,
-      location_name: "Super Store",
-      description: "my description ... "
-    },
-    {
-      location_id: 3,
-      location_name: "Super Store",
-      description: "my description ... "
-    },
-    {
-      location_id: 3,
-      location_name: "Super Store",
-      description: "my description ... "
-    },
-    {
-      location_id: 3,
-      location_name: "Super Store",
-      description: "my description ... "
+      id: 5,
+      name: "Super Store",
+      address: "Bandera Dakota",
+      details: "(959) 119-8364"
     }
   ];
 
@@ -62,51 +48,164 @@ app.get("/locationlist", (req, res) => {
 app.get("/displaylist/:location_id", (req, res) => {
   let location_id = req.params.location_id;
 
-  let displayList = {
-    locationId: 0,
-    display: [
-      {
-        id: 0,
-        name: "/display/live0000",
-        description: "Monitor above counter"
-      },
-      {
-        id: 1,
-        name: "/display/live0001",
-        description: "Monitor at entrance"
-      },
-      {
-        id: 2,
-        name: "/display/live0002",
-        description: "Monitor behind customer table"
-      },
-      {
-        id: 3,
-        name: "/display/live0004",
-        description: "I ran out of places where monitor could be"
-      },
-      {
-        id: 4,
-        name: "/display/live0005",
-        description: "Monitor where it should be"
-      },
-      {
-        id: 5,
-        name: "/display/live0006",
-        description: "Monitor Monitor"
-      }
-    ]
-  };
-
   /**
-   * create a bunch of those displays and populate the information
-   **/
-  res.send(displayList);
+   * Create a switch statement for these loctions and return the displays based on that
+   */
+  let displayList;
+  switch (location_id) {
+    case "0":
+      displayList = {
+        locations: {
+          location_id: 0,
+          name: "Gino's Pizzeria",
+          details: "(468) 353-2641",
+          displays: [
+            {
+              display_id: 1007,
+              display_name: "Counter_1",
+              description: "Above Counter 1"
+            },
+            {
+              display_id: 1008,
+              display_name: "Counter_2",
+              description: "Above Counter 2"
+            },
+            {
+              display_id: 1009,
+              display_name: "Counter_3",
+              description: "Above Counter 2"
+            },
+            {
+              display_id: 1010,
+              display_name: "Counter_4",
+              description: "Above Counter 2"
+            }
+          ]
+        }
+      };
+      return res.send(displayList);
+      break;
+
+    case "1":
+      displayList = {
+        locations: {
+          location_id: 0,
+          name: "Big Bear",
+          details: "(793) 151-6230",
+          displays: [
+            {
+              display_id: 1011,
+              display_name: "Counter_4",
+              description: "Above Counter 1"
+            },
+            {
+              display_id: 1012,
+              display_name: "Counter_3",
+              description: "Above Counter 2"
+            }
+          ]
+        }
+      };
+      return res.send(displayList);
+      break;
+
+    case "2":
+      displayList = {
+        locations: {
+          location_id: 2,
+          name: "Big Bear",
+          details: "(793) 151-6230",
+          displays: [
+            {
+              display_id: 1011,
+              display_name: "Counter_4",
+              description: "Above Counter 1"
+            },
+            {
+              display_id: 1012,
+              display_name: "Counter_3",
+              description: "Above Counter 2"
+            }
+          ]
+        }
+      };
+      return res.send(displayList);
+      break;
+
+    case "3":
+      displayList = {
+        locations: {
+          location_id: 3,
+          name: "Kelseys",
+          details: "(684) 579-1879",
+          displays: [
+            {
+              display_id: 1013,
+              display_name: "Counter_4",
+              description: "Above Counter 1"
+            },
+            {
+              display_id: 1014,
+              display_name: "Counter_3",
+              description: "Above Counter 2"
+            }
+          ]
+        }
+      };
+      return res.send(displayList);
+      break;
+
+    case "4":
+      displayList = {
+        locations: {
+          location_id: 4,
+          name: "Super Store",
+          details: "(660) 663-4518",
+          displays: [
+            {
+              display_id: 1015,
+              display_name: "Counter_4",
+              description: "Above Counter 1"
+            },
+            {
+              display_id: 1016,
+              display_name: "Counter_3",
+              description: "Above Counter 2"
+            }
+          ]
+        }
+      };
+      return res.send(displayList);
+      break;
+
+    case "5":
+      displayList = {
+        locations: {
+          location_id: 5,
+          name: "Super Store",
+          details: "(959) 119-8364",
+          displays: [
+            {
+              display_id: 1017,
+              display_name: "Counter_4",
+              description: "Above Counter 1"
+            },
+            {
+              display_id: 1018,
+              display_name: "Counter_3",
+              description: "Above Counter 2"
+            }
+          ]
+        }
+      };
+      return res.send(displayList);
+      break;
+  }
 });
 
 app.get("/contentlist/:display_id", (req, res) => {
   let display_id = req.params.display_id;
-  
+
   let contentList = {
     displayId: 0,
     content: [

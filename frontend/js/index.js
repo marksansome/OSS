@@ -74,9 +74,10 @@ function createLocationCard(cardObj) {
   let card = '<div class="col-md-3 col-sm-6">'
             + '<div class="card">'
             +'<div class="card-body">'
-            +'<h5 class="card-title" id ="loc-name-'+ cardObj.location_id  + '">Location: ' + cardObj.location_name + '</h5>' 
-            +'<p class="card-text" id ="loc-desc-'+ cardObj.location_id  + '">Address: ' + cardObj.description + '</p>' 
-            +'<button class="btn card-button" onClick="getDisplayList('+ cardObj.location_id +')">View Location</button>'
+            +'<h5 class="card-title" id ="loc-name-'+ cardObj.id  + '">Location: ' + cardObj.name + '</h5>' 
+            +'<p class="card-text" id ="loc-address-'+ cardObj.id  + '">Address: ' + cardObj.address + '</p>' 
+            +'<p class="card-text" id ="loc-detail-'+ cardObj.id  + '">Details: ' + cardObj.details + '</p>' 
+            +'<button class="btn card-button" onClick="getDisplayList('+ cardObj.id +')">View Location</button>'
             +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="createModal()">Edit</button>' 
             + '</div>' 
             +'</div>'
@@ -101,9 +102,9 @@ function createDisplayCard(dispObj) {
   let card = '<div class="col-md-3 col-sm-6">'
             + '<div class="card">'
             +'<div class="card-body">'
-            +'<h5 class="card-title" id ="disp-name-'+ dispObj.id  + '">Display: ' + dispObj.name + '</h5>' 
-            +'<p class="card-text" id ="disp-desc-'+ dispObj.id  + '">Description: ' + dispObj.description + '</p>' 
-            +'<button class="btn card-button" onClick="getContentList('+ dispObj.id +')">View Display</button>'
+            +'<h5 class="card-title" id ="disp-name-'+ dispObj.display_id  + '">Display: ' + dispObj.display_name + '</h5>' 
+            +'<p class="card-text" id ="disp-desc-'+ dispObj.display_id  + '">Description: ' + dispObj.description + '</p>' 
+            +'<button class="btn card-button" onClick="getContentList('+ dispObj.display_id +')">View Display</button>'
             +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="createModal()">Edit</button>' 
             + '</div>' 
             +'</div>'
@@ -224,14 +225,15 @@ function getDisplayList(locationId) {
     success: success => {
       let newRow = false;
 
+      console.log(success);
+
       counter = 1;
       let row = createRow();
 
       let display_panel = document.getElementById("display-panel");
-      let displayList = success.display;
+      let displayList = success.locations.displays;
 
-       for(let item of displayList){
-         
+       for(let item of displayList){         
           if(counter % 4 == 0){
             newRow = true;
 
@@ -252,9 +254,14 @@ function getDisplayList(locationId) {
             let card = createDisplayCard(item);
             row.innerHTML = row.innerHTML + card;
           }
+
+
           
           counter++;
        }
+
+       $(display_panel).append(row);
+       console.log($(display_panel));
     },
     error: error => {
       console.log(error);
