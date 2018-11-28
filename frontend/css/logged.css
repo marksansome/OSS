@@ -168,8 +168,6 @@ body {
 }
 
 
-
-
 /*   MODALS    */
 .modal-submit-btn{
     float: center;
@@ -191,4 +189,9 @@ body {
 .modal-header{
     background-color:#edac68;;
     color: #FFFFFF;
+}
+
+
+#summernote{
+    margin-top: 100px;
 }
