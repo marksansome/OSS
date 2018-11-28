@@ -1,8 +1,8 @@
 $(document).ready(function() {
   getLocationList();
-  displayViewActive();
+  // displayViewActive();
   //locationViewActive();
-  $("#edit-display-modal").modal('show');
+  // $("#edit-display-modal").modal('show');
   $("#locations-button").click(function() {
     getLocationList();
     locationViewActive();
@@ -59,53 +59,30 @@ function contentViewActive() {
 }
 */
 
-
-let locationCardElement = {
-  type : "loc",
-  title : "Location",
-  text  : "Address",
-  button : {
-    btn1 : "View Location",
-    btn2 : "Edit"
-  }
-}
-
 function createLocationCard(cardObj) {
   let card = '<div class="col-md-3 col-sm-6">'
             + '<div class="card">'
             +'<div class="card-body">'
-            +'<h5 class="card-title" id ="loc-name-'+ cardObj.id  + '">Location: ' + cardObj.name + '</h5>' 
-            +'<p class="card-text" id ="loc-address-'+ cardObj.id  + '">Address: ' + cardObj.address + '</p>' 
-            +'<p class="card-text" id ="loc-detail-'+ cardObj.id  + '">Details: ' + cardObj.details + '</p>' 
+            +'<h5 class="card-title">Location: <span id ="loc-name-'+ cardObj.id  + '" >' + cardObj.name + '</span></h5>' 
+            +'<p class="card-text" >Address: <span id ="loc-address-'+ cardObj.id  + '" >' + cardObj.address + '</span></p>' 
+            +'<p class="card-text" >Details: <span id ="loc-detail-'+ cardObj.id  + '" >' + cardObj.details + '</span></p>' 
             +'<button class="btn card-button" onClick="getDisplayList('+ cardObj.id +')">View Location</button>'
-            +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="createModal()">Edit</button>' 
+            +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="showEditModal('+ cardObj.id +')">Edit</button>' 
             + '</div>' 
             +'</div>'
             +'</div>';
   
   return card;
 }
-
-
-let displayCardElement = {
-  type: "disp",
-  title : "Display",
-  text  : "Description",
-  button : {
-    btn1 : "View Display",
-    btn2 : "Edit"
-  }
-}
-
 
 function createDisplayCard(dispObj) {
   let card = '<div class="col-md-3 col-sm-6">'
             + '<div class="card">'
             +'<div class="card-body">'
-            +'<h5 class="card-title" id ="disp-name-'+ dispObj.display_id  + '">Display: ' + dispObj.display_name + '</h5>' 
-            +'<p class="card-text" id ="disp-desc-'+ dispObj.display_id  + '">Description: ' + dispObj.description + '</p>' 
+            +'<h5 class="card-title" >Display: <span id ="disp-name-'+ dispObj.display_id  + '">' + dispObj.display_name + '</span></h5>' 
+            +'<p class="card-text" >Description: <span id ="disp-desc-'+ dispObj.display_id  + '" >' + dispObj.description + '</span></p>' 
             +'<button class="btn card-button" onClick="getContentList('+ dispObj.display_id +')">View Display</button>'
-            +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="createModal()">Edit</button>' 
+            +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="showEditModal('+ dispObj.display_id +')">Edit</button>' 
             + '</div>' 
             +'</div>'
             +'</div>';
@@ -113,29 +90,58 @@ function createDisplayCard(dispObj) {
   return card;
 }
 
-let contentElement = {
-  type: "cont",
-  title: "Content",
-  text: "Description",
-  button: {
-    btn1 : "View",
-    btn2 : "Edit"
-  }
+function showCreateModal(){
+  /**
+   * Clear previously entered values inside the show create modal
+   */
+   if(document.getElementById('createLocationName').value != null){
+    document.getElementById('createLocationName').value = '';
+   }
+
+   if(document.getElementById('createLocationDesc').value != null){
+    document.getElementById('createLocationDesc').value = '';
+   }
+
+   if(document.getElementById('createDisplayName').value != null){
+    document.getElementById('createDisplayName').value = '';
+   }
+
+   if(document.getElementById('createDisplayDesc').value != null){
+    document.getElementById('createDisplayDesc').value = '';
+   }
 }
 
-function createContentCard(contObj) {
-  let card = '<div class="col-md-3 col-sm-6">'
-            + '<div class="card">'
-            +'<div class="card-body">'
-            +'<h5 class="card-title" id ="cont-name-'+ contObj.id  + '">Content: ' + contObj.name + '</h5>' 
-            +'<p class="card-text" id ="cont-desc-'+ contObj.id  + '">Description: ' + contObj.description + '</p>' 
-            +'<button class="btn card-button">View Content</button>'
-            +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="createModal()">Edit</button>' 
-            + '</div>' 
-            +'</div>'
-            +'</div>';
-  
-  return card;
+function showEditModal(id){
+    if ( $("#locations-view").is(":visible")) {
+      $("#edit-location-modal").modal('show');
+      console.log('location ' + id);
+
+      /**
+       * Set the values inside edit block
+       */
+      document.getElementById('editLocationName').value = document.getElementById('loc-name-' + id).innerText;
+      document.getElementById('editLocationAddress').value = document.getElementById('loc-address-' + id).innerText;
+      document.getElementById('editLocationDesc').value = document.getElementById('loc-detail-' + id).innerText;
+    } 
+    else if ( $("#displays-view").is(":visible")){
+      $("#edit-display-modal").modal('show');
+      console.log('display ' + id);
+
+      document.getElementById('editDisplayName').value = document.getElementById('disp-name-' + id).innerText;
+      document.getElementById('editDisplayDesc').value = document.getElementById('disp-desc-' + id).innerText;
+    }
+}
+
+function postNewLocation(){
+  let locationName = document.getElementById('createLocationName').value;
+  let locationDescription = document.getElementById('createLocationDesc').value;
+  console.log('New location to be added: ');
+  console.log(locationName);
+  console.log(locationDescription);
+
+  /**
+   * Make a post request here and finish this part
+   */
 }
 
 
@@ -200,7 +206,6 @@ function createRow(){
   return row;
 }
 
-
 function getDisplayList(locationId) {
   /**
    * Clear the previous cards on the view
@@ -224,8 +229,6 @@ function getDisplayList(locationId) {
     processData: false,
     success: success => {
       let newRow = false;
-
-      console.log(success);
 
       counter = 1;
       let row = createRow();
@@ -255,67 +258,11 @@ function getDisplayList(locationId) {
             row.innerHTML = row.innerHTML + card;
           }
 
-
-          
           counter++;
        }
 
        $(display_panel).append(row);
        console.log($(display_panel));
-    },
-    error: error => {
-      console.log(error);
-    }
-  });
-}
-
-function getContentList(displayId){
-  /**
-   * Clear the previous cards on the view
-   */
-  document.getElementById('content-panel').innerHTML = "";
-
-  $("#locations-view").hide();
-  $("#displays-view").hide();
-  $("#content-view").show();
-
-  $.ajax({
-    url: "/content-list/" + displayId,
-    type: "GET",
-    dataType: "json",
-    processData: false,
-    success: success => {
-
-      let content_panel = document.getElementById('content-panel');
-      let newRow = false;
-      let contentList = success.content;
-
-      counter = 1;
-      let row = createRow();
-       for(let item of contentList){         
-          if(counter % 4 == 0){
-            newRow = true;
-
-            /**
-             * placement of new row and cards in it
-             */
-            let display = document.getElementById("content-panel");
-            let card = createContentCard(item);
-            row.innerHTML = row.innerHTML + card;
-            $(content_panel).append(row);
-          }
-          else {
-            newRow = false;
-
-            /**
-             * placement of cards in previously created row
-             */
-            let card = createContentCard(item);
-            row.innerHTML = row.innerHTML + card;
-          }
-          
-          counter++;
-       }
     },
     error: error => {
       console.log(error);

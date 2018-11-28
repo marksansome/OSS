@@ -166,3 +166,29 @@ body {
 .view-panel {
     padding-top: 150px;
 }
+
+
+
+
+/*   MODALS    */
+.modal-submit-btn{
+    float: center;
+    background: none;
+    border: 2px solid #f49e42;
+    background-color: #edac68;
+    color: #FFFFFF;
+    transition: 0.2s;
+    margin: 4px;
+    width: 110px;
+}
+
+.modal-submit-btn:hover{
+    color: #FFFFFF;
+    background-color: #f49e42;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-header{
+    background-color:#edac68;;
+    color: #FFFFFF;
+}
