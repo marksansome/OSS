@@ -16,6 +16,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/login.js"></script>
+
+    <!-- toastr js and css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   </head>
 
   <body>
@@ -26,13 +30,13 @@
                 <div  class="container"><h2>OpenSource Signage</h2></div>
                 <div class="form-group">
                   <label for="username"><b>Username</b></label>
-                  <input type="text" placeholder="Enter Username" name="username" class="form-control" required/>
+                  <input type="text" placeholder="Enter Username" id="user_name" name="username" class="form-control" required/>
                 </div>
 
                 <div class="form-group">
                   <label for="password"><b>Password</b></label>
                   <input
-                    type="password" placeholder="Enter Password" name="password" class="form-control" required />
+                    type="password" placeholder="Enter Password" id="password" name="password" class="form-control" required />
                 </div>
 
                 <div class="form-group">
@@ -45,7 +49,7 @@
 
     <div class="container">
         <div class="form-group">
-            <button id="go-viewer" class="btn btn-login" type="button">Go To Viewer</button>
+            <button id="go-viewer" class="btn btn-login" type="button" onclick="openViewer()">Go To Viewer</button>
         </div>
     </div>
   </body>

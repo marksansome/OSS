@@ -44,6 +44,15 @@ app.get("/user-logout", (req,res) => {
     console.log('user log-out');
     res.status(200).sendFile(path.join(__dirname + "/html/frontView.html"));
 });
+
+/**
+ * Viewer page specific routes
+ */
+app.get("/viewer-login", (req, res) => {
+    res.sendFile(path.join(__dirname + "/html/viewer.html"));
+});
+
+
   
 /**
  * Other http-requests
