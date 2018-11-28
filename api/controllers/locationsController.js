@@ -1,38 +1,20 @@
 const model = require('../models/locationsModel');
 
 module.exports = {
-	getLocations: async function (userID) {
-		/* Getting result from database call */
-		var result = await model.getAllLocationsForUser(userID);
-
-		console.log(result);
-
-		return result;
-	},
-
-	createLocation: async function (userID, newLocation) {
-		console.log("creating location with ID" + userID + "newLocation" + newLocation);
-
-		var SubmittedLocation = await model.createLocation(userID, newLocation);
-
-		//Current just returns success message, future support to be added
-		return SubmittedLocation;
-	},
-
-	getLocationWithID: async function (userID, locationID) {
-		console.log("Searching for Location ID#" + locationID + " under userID " + userID);
-
-		var Location = await model.getLocationWithID(userID, locationID);
-
-		return Location;
-	},
-
-	deleteLocationWithID: async function (userID, locationID) {
-		console.log("Deleting for Location ID#" + locationID + " under userID " + userID);
-
-		var Location = await model.deleteLocationWithID(userID, locationID);
-
-		return Location;
-	}
+    getLocations: async function (userID) {
+        return await model.getAllLocationsForUser(userID);
+    },
+    createLocation: async function (userID, newLocation) {
+        return await model.createLocation(userID, newLocation);
+        //Current just returns success message, future support to be added
+    },
+    getLocationWithID: async function (userID, locationID) {
+        return await model.getLocationWithID(userID, locationID);
+    },
+    updateLocationWithID: async function (userID, locationID, location) {
+        return await model.updateLocationWithID(userID, locationID, location);
+    },
+    deleteLocationWithID: async function (userID, locationID) {
+        return await model.deleteLocationWithID(userID, locationID);
+    }
 }
-
