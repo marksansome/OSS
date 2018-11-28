@@ -14,6 +14,10 @@ router.post('/displays', (req, res, next) => {
 
         if (display) {
             displaysController.createDisplay(userID, display).then((result) => {
+                if (!result.displays.id) {
+                    res.status(404).send(result);
+                    return;
+                }
                 res.status(200).send(result);
             });
         } else {

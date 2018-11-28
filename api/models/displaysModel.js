@@ -9,46 +9,61 @@ module.exports = {
 
             console.log("Creating Display: ( name: " + name + " description: " + description + " locationID: " + location_id + " userID: " + userID + ")");
 
-            //TODO: I know this is not dry. I know that there is a better way to do this... but its 3am and fuck it
-            if (display["content"]) {
-                console.log("THERE IS A CONTENT");
-                let content = display["content"];
-                db.query('INSERT INTO DISPLAYS (description, display_name, content) VALUES ($1,$2,$3) RETURNING display_id', [description, name, content], (err, result) => {
-                    let display_id = result.rows[0].display_id;
+            //check that the desired location exists
+            db.query('SELECT * FROM LOCATIONS WHERE location_id=$1', [location_id], (err, result) => {
 
-                    /* After getting the display id of our newly created display, map the locationID to the DisplayID in the MAPPED_LD (location, display) table*/
-                    db.query('INSERT INTO MAPPED_LD (location_id, display_id) VALUES ($1,$2)', [location_id, display_id], (err, result) => {
-                        let resp = {
-                            "display": {
-                                "id": display_id,
-                                "location": location_id,
-                                "name": name,
-                                "description": description
-                            }
+                if (result.rowCount < 1) {
+                    let resp = {
+                        "displays": {
+                            "id": "",
+                            "status": "ERROR",
+                            "message": "location_id '" + location_id + "' does not exist"
                         }
-                        //return all information to poster including new IDs, can be used to confirm creation and for UI refrences 
-                        resolve(resp);
-                    });
-                });
-            } else {
-                db.query('INSERT INTO DISPLAYS (description, display_name) VALUES ($1,$2) RETURNING display_id', [description, name], (err, result) => {
-                    let display_id = result.rows[0].display_id;
+                    }
+                    resolve(resp);
+                    return;
+                }
 
-                    /* After getting the display id of our newly created display, map the locationID to the DisplayID in the MAPPED_LD (location, display) table*/
-                    db.query('INSERT INTO MAPPED_LD (location_id, display_id) VALUES ($1,$2)', [location_id, display_id], (err, result) => {
-                        let resp = {
-                            "display": {
-                                "id": display_id,
-                                "location": location_id,
-                                "name": name,
-                                "description": description
+                //TODO: I know this is not dry. I know that there is a better way to do this... but its 3am and fuck it
+                if (display["content"]) {
+                    let content = display["content"];
+                    db.query('INSERT INTO DISPLAYS (description, display_name, content) VALUES ($1,$2,$3) RETURNING display_id', [description, name, content], (err, result) => {
+                        let display_id = result.rows[0].display_id;
+
+                        /* After getting the display id of our newly created display, map the locationID to the DisplayID in the MAPPED_LD (location, display) table*/
+                        db.query('INSERT INTO MAPPED_LD (location_id, display_id) VALUES ($1,$2)', [location_id, display_id], (err, result) => {
+                            let resp = {
+                                "displays": {
+                                    "id": display_id,
+                                    "location": location_id,
+                                    "name": name,
+                                    "description": description
+                                }
                             }
-                        }
-                        //return all information to poster including new IDs, can be used to confirm creation and for UI refrences 
-                        resolve(resp);
+                            //return all information to poster including new IDs, can be used to confirm creation and for UI refrences 
+                            resolve(resp);
+                        });
                     });
-                });
-            }
+                } else {
+                    db.query('INSERT INTO DISPLAYS (description, display_name) VALUES ($1,$2) RETURNING display_id', [description, name], (err, result) => {
+                        let display_id = result.rows[0].display_id;
+
+                        /* After getting the display id of our newly created display, map the locationID to the DisplayID in the MAPPED_LD (location, display) table*/
+                        db.query('INSERT INTO MAPPED_LD (location_id, display_id) VALUES ($1,$2)', [location_id, display_id], (err, result) => {
+                            let resp = {
+                                "displays": {
+                                    "id": display_id,
+                                    "location": location_id,
+                                    "name": name,
+                                    "description": description
+                                }
+                            }
+                            //return all information to poster including new IDs, can be used to confirm creation and for UI refrences 
+                            resolve(resp);
+                        });
+                    });
+                }
+            })
         })
     },
 
@@ -60,7 +75,9 @@ module.exports = {
                 // Location requested does not exist
                 if (!result.rows[0]) {
                     let resp = {
-                        "displays": {}
+                        "displays": {},
+                        "status": "ERROR",
+                        "message": "No display with display_id '" + displayID + "'"
                     }
                     resolve(resp);
                     return;
@@ -68,8 +85,18 @@ module.exports = {
                 let display = result.rows[0];
 
                 db.query('SELECT location_id FROM MAPPED_LD WHERE display_id = $1', [displayID], (err, result) => {
+                    if (result.rowCount < 1) {
+                        let resp = {
+                            "displays": {},
+                            "status": "ERROR",
+                            "message": "No display with display_id '" + displayID + "'"
+                        }
+                        resolve(resp);
+                        return;
+                    }
+                    console.log(result);
                     let resp = {
-                        "display": {
+                        "displays": {
                             "id": display.display_id,
                             "location": result.rows[0].location_id,
                             "name": display.display_name,
@@ -108,30 +135,30 @@ module.exports = {
 
             console.log("Updating Display: ( name: " + name + " address: " + description + " userID: " + userID + " displayID: " + displayID + ")");
 
-            db.query('UPDATE displays SET display_name = ($1), description = ($2), content = ($3) WHERE display_id=$4', [name, description, content, displayID], (err, result) => {
-                let resp = {
-                    "display": {
-                        "id": displayID,
-                        "name": name,
-                        "description": description,
-                        "content": content
+            db.query('SELECT * FROM MAPPED_LD WHERE display_id = $1', [displayID], (err, result) => {
+                if (result.rowCount < 1) {
+                    let resp = {
+                        "displays": {},
+                        "status": "ERROR",
+                        "message": "No display with display_id '" + displayID + "'"
                     }
+                    resolve(resp);
+                    return;
                 }
-                resolve(resp);
-                //TODO: CHECK IF UPDATE WAS OKAY. next query will fail if the object updated dosent exist in db
-                //NOTE: Removing the functionality to return location id here as it creates to much over head. Future implementations
-                // db.query('SELECT location_id FROM MAPPED_LD WHERE display_id = $1', [displayID], (err, result) => {
-                //     let resp = {
-                //         "display": {
-                //             "id": displayID,
-                //             "location": result.rows[0].location_id,
-                //             "name": name,
-                //             "description": description,
-                //             "content": content
-                //         }
-                //     }
-                //     resolve(resp);
-                // });
+                let location_id = result.rows[0].location_id;
+
+                db.query('UPDATE displays SET display_name = ($1), description = ($2), content = ($3) WHERE display_id=$4', [name, description, content, displayID], (err, result) => {
+                    let resp = {
+                        "displays": {
+                            "id": displayID,
+                            "location": location_id,
+                            "name": name,
+                            "description": description,
+                            "content": content
+                        }
+                    }
+                    resolve(resp);
+                });
             });
         })
     },
