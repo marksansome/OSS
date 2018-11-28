@@ -1,7 +1,6 @@
 $(document).ready(function() {
   getLocationList();
-  // displayViewActive();
-  //locationViewActive();
+  locationViewActive();
   // $("#edit-display-modal").modal('show');
   $("#locations-button").click(function() {
     getLocationList();
@@ -207,6 +206,7 @@ function createRow(){
 }
 
 function getDisplayList(locationId) {
+  displayViewActive();
   /**
    * Clear the previous cards on the view
    */
