@@ -207,6 +207,87 @@ app.get("/displaylist/:location_id", (req, res) => {
   }
 });
 
+/**
+ * This gives the output for viewer page
+ */
+app.get("/viewer-page/:display_id", (req, res) => {
+
+  let display_id = req.params.display_id;
+
+  /**
+   * Check if the display id exists
+   */
+   switch(display_id){
+     case '1000':
+     case '1001':
+     case '1002':
+     case '1003':
+     break;
+
+     default:
+      return res.status(400).send('Did not find the display id entered by user');
+     break;
+   }
+
+
+  /**
+   * Get the content based on the display id
+   */
+  let content;
+
+  switch(display_id){
+    case '1000':
+    content = {
+      displays: {
+        id: 1000,
+        display_name: "Counter_1",
+        description: "Above Counter 1",
+        content: "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Breakfast menu</h1>\n\n<p>Menu<ul><li>Coffee</li><li>Tea</li></ul></p>\n\n</body>\n</html>"
+      }
+    };
+    return res.send(content);
+    break;
+
+    case '1001':
+    content = {
+      displays: {
+        id: 1001,
+        display_name: "Counter_1",
+        description: "Above Counter 1",
+        content: "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Lunch menu</h1>\n\n<p>Menu</p>\n\n</body>\n</html>"
+      }
+    };
+    return res.send(content);
+    break;
+
+    case '1002':
+    content = {
+      displays: {
+        id: 1002,
+        display_name: "Counter_1",
+        description: "Above Counter 1",
+        content: "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Lunch menu</h1>\n\n<p>Menu</p>\n\n</body>\n</html>"
+      }
+    };
+    return res.send(content);
+    break;
+
+    case '1003':
+    content = {
+      displays: {
+        id: 1003,
+        display_name: "Counter_1",
+        description: "Above Counter 1",
+        content: "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>Lunch menu</h1>\n\n<p>Menu</p>\n\n</body>\n</html>"
+      }
+    };
+    return res.send(content);
+    break;
+  }
+
+
+});
+
 app.get("/contentlist/:display_id", (req, res) => {
   let display_id = req.params.display_id;
 
@@ -219,18 +300,7 @@ app.get("/contentlist/:display_id", (req, res) => {
       id: 1007,
       display_name: "Counter_1",
       description: "Above Counter 1",
-      content: [
-        {
-          id: 1,
-          name: "testName",
-          description: "description of content"
-        },
-        {
-          id: 2,
-          name: "testName",
-          description: "description of content"
-        }
-      ]
+      content: "<>"
     }
   };
 

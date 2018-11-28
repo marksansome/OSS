@@ -6,6 +6,7 @@ body {
 
 /* Bordered form */
 #login-div {
+    margin-top: 100px;
     border: 3px solid #cc7a22;
 }
 
@@ -65,6 +66,11 @@ span.psw {
     float: right;
     padding-top: 16px;
 }
+
+#viewer-div{
+    margin-top: 100px;
+}
+
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 500px) {
