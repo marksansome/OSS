@@ -1,25 +1,14 @@
 $(document).ready(function() {
   getLocationList();
   locationViewActive();
-
+  
   $("#locations-button").click(function() {
     getLocationList();
     locationViewActive();
   });
 
   $("#displays-button").click(function() {
-    $("#locations-view").hide();
-    $("#displays-view").show();
-
-    $("#content-button").hide();
-    $("#displays-button").attr("disabled", false);
-    $("#content-button").attr("disabled", false);
-    $("#crumb1").show();
-    $("#crumb2").hide();
-  });
-
-  $("#content-button").click(function() {
-
+    displayViewActive();
   });
 });
 
@@ -30,7 +19,7 @@ function locationViewActive() {
 
   $("#locations-button").attr("disabled", true);
   $("#displays-button").attr("disabled", false);
-  $("#content-button").attr("disabled", false);
+  //$("#content-button").attr("disabled", false);
   $("#displays-button").hide();
   $("#content-button").hide();
   $("#crumb1").hide();
@@ -39,16 +28,17 @@ function locationViewActive() {
 
 function displayViewActive() {
   $("#locations-view").hide();
-  $("#displays-view").hide();
-  $("#content-view").show();
+  $("#displays-view").show();
+  $("#content-view").hide();
   $("#locations-button").attr("disabled", false);
   $("#displays-button").attr("disabled", true);
-  $("#content-button").attr("disabled", false);
-  $("#displays-button").hide();
+  //$("#content-button").attr("disabled", false);
+  $("#displays-button").show();
+  $("#content-button").hide();
   $("#crumb1").show();
-  $("#crumb2").show();
+  $("#crumb2").hide();
 }
-
+/*
 function contentViewActive() {
   $("#locations-view").hide();
   $("#displays-view").hide();
@@ -57,7 +47,7 @@ function contentViewActive() {
   $("#displays-button").attr("disabled", false);
   $("#content-button").attr("disabled", true);
 }
-
+*/
 function createModal(obj) {
   console.log('Object received');
   console.log(obj);
