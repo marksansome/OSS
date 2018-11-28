@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="#" />
+
+    <!-- Bootsrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+
+    <!-- Bootstrap js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
+
+    <!-- toastr js and css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6" id="login-div">
+                <div  class="container"><h2>OpenSource Signage</h2></div>
+                <div class="form-group">
+                  <label for="username"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" id="user_name" name="username" class="form-control" required/>
+                </div>
+
+                <div class="form-group">
+                  <label for="password"><b>Password</b></label>
+                  <input
+                    type="password" placeholder="Enter Password" id="password" name="password" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <button id="login-btn" class="btn btn-login" onClick="userLogin()">Login</button>
+                </div>
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="container">
+        <div class="form-group">
+            <button id="go-viewer" class="btn btn-login" type="button" onclick="openViewer()">Go To Viewer</button>
+        </div>
+    </div>
+  </body>
+</html>

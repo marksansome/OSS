@@ -6,6 +6,10 @@
 3) Go on your browser and type: localhost:8000
 4) This will give the html file
 
+# Run Mock Back-end to see the card placement
+1) Go into Mock-back end folder and type 'npm start'
+2) Make sure both front and back end servers are running to see the changes
+
 # Running local environment
 
 To start the local database run the following:
