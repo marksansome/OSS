@@ -27,8 +27,6 @@ router.post('/displays', (req, res, next) => {
         else {
             res.status(500).send("Error: No 'display' key (Which should contain all display info) found in body of request for /createDisplay");
         }
-
-
     }
 });
 

@@ -4,25 +4,25 @@ const db = require('../dbSetup')
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
-
-// router.get('/', (req, res) => {
-//     // res.send('response');
-//     res.json({ message: 'hooray! welcome to the OSS api!' });
-// });
-
 router.post('/register', (req, res, next) => {
-
-
     try {
         console.log(req.body);
         bcrypt.hash(req.body.password, 5, (err, hash) => {
             if (err) {
                 console.log(err);
-                res.status(500).send("server not okay");
+                let resp = {
+                    "register": "failure",
+                    "message": "server not okay"
+                }
+                res.status(500).send(resp);
             } else {
                 JSON.stringify(db.query('SELECT user_id FROM USERS WHERE username=$1', [req.body.username], (err, result) => {
                     if (result.rows[0]) {
-                        res.status(403).send("user already exists");
+                        let resp = {
+                            "register": "failure",
+                            "message": "user already exists"
+                        }
+                        res.status(403).send(resp);
                     }
                     else {
                         db.query('INSERT INTO USERS (display_name, username, password) VALUES ($1, $2, $3)', [req.body.displayName, req.body.username, hash], (err, result) => {
@@ -36,7 +36,11 @@ router.post('/register', (req, res, next) => {
                                     if (err) {
                                         console.log(err);
                                     }
-                                    res.status(200).send("new user created. logged in");
+                                    let resp = {
+                                        "register": "success",
+                                        "message": "new user created. logged in"
+                                    }
+                                    res.status(200).send(resp);
                                 });
                                 return;
                             }
@@ -53,9 +57,16 @@ router.post('/register', (req, res, next) => {
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
     req.session.save((err) => {
         if (err) {
+            let resp = {
+                "login": "failure"
+            }
+            res.status(500).send(resp);
             return next(err);
         }
-        res.status(200).send("logged in");
+        let resp = {
+            "login": "success"
+        }
+        res.status(200).send(resp);
     });
 });
 
@@ -63,9 +74,17 @@ router.get('/logout', (req, res, next) => {
     req.logout();
     req.session.save((err) => {
         if (err) {
+            let resp = {
+                "logout": "failure"
+            }
+            res.status(500).send(resp);
             return next(err);
         }
     });
+    let resp = {
+        "logout": "success"
+    }
+    res.status(200).send(resp);
 });
 
 router.get('/ping', (req, res) => {

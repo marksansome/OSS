@@ -26,7 +26,7 @@ router.get('/locations', (req, res, next) => {
 router.post('/locations', (req, res, next) => {
 
     if (req.user == null) {
-        res.status(500).send("Error - cannot POST /createLocation: no valid account found. Please sign in first.");
+        res.status(500).send("Error - cannot POST /locations: no valid account found. Please sign in first.");
     } else {
         let user = req.user;
         let userID = user[0]["userID"];
@@ -51,13 +51,13 @@ router.post('/locations', (req, res, next) => {
 router.get('/locations/:id', (req, res, next) => {
 
     if (req.user == null) {
-        res.status(500).send("Error - cannot GET /locationWithID: no valid account found. Please sign in first.");
+        res.status(500).send("Error - cannot GET /locations/id: no valid account found. Please sign in first.");
     } else {
         let user = req.user;
         let userID = user[0]["userID"];
         let displayName = user[0]["displayName"];
 
-        let locationID = req.param.id;
+        let locationID = req.params.id;
         console.log(locationID);
 
         /* If the API caller provided a locationID in the body */
@@ -75,6 +75,41 @@ router.get('/locations/:id', (req, res, next) => {
             res.status(500).send("Error: No 'location_id' key found in body of request for /locationWithID");
         }
 
+    }
+});
+
+/* It will only get the location with the ID that you provide if your AccountID matches that of the location*/
+router.delete('/locations/:id', (req, res, next) => {
+
+    if (req.user == null) {
+        res.status(500).send("Error - cannot DELETE /locations: no valid account found. Please sign in first.");
+    } else {
+        let user = req.user;
+        let userID = user[0]["userID"];
+        let displayName = user[0]["displayName"];
+        let locationID = req.params.id;
+        /* If the API caller provided a locationID in the body */
+        if (locationID) {
+            locationsController.deleteLocationWithID(userID, locationID).then((result) => {
+                let resp = {
+                    "locations": {
+                        "location_id": locationID,
+                        "status": "DELETED"
+                    }
+                }
+                res.status(200).send(resp);
+            });
+        }
+        /* If the API caller DID NOT provide a locationID in the body */
+        else {
+            let resp = {
+                "locations": {
+                    "location_id": undefined,
+                    "status": "ERROR"
+                }
+            }
+            res.status(500).send(resp);
+        }
     }
 });
 
