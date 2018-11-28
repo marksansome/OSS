@@ -191,7 +191,9 @@ body {
     color: #FFFFFF;
 }
 
-
-#summernote{
-    margin-top: 100px;
+#edit-content {
+    width: 100%;
+}
+.summernote {
+    margin-top: 200px;
 }
