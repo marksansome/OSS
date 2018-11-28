@@ -6,6 +6,7 @@ body {
 
 /* Bordered form */
 #login-div {
+    margin-top: 100px;
     border: 3px solid #cc7a22;
 }
 
@@ -65,6 +66,20 @@ span.psw {
     float: right;
     padding-top: 16px;
 }
+
+#viewer-div{
+    margin-top: 100px;
+}
+
+iframe {
+    width: 80%;
+    min-height: 300px;
+    border-radius: 10px;
+    border-style: solid;
+    margin: 10px;
+    background-color:white;
+}
+
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 500px) {

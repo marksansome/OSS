@@ -1,7 +1,6 @@
 $(document).ready(function() {
   getLocationList();
-  // displayViewActive();
-  //locationViewActive();
+  locationViewActive();
   // $("#edit-display-modal").modal('show');
   $("#locations-button").click(function() {
     getLocationList();
@@ -81,7 +80,7 @@ function createDisplayCard(dispObj) {
             +'<div class="card-body">'
             +'<h5 class="card-title" >Display: <span id ="disp-name-'+ dispObj.display_id  + '">' + dispObj.display_name + '</span></h5>' 
             +'<p class="card-text" >Description: <span id ="disp-desc-'+ dispObj.display_id  + '" >' + dispObj.description + '</span></p>' 
-            +'<button class="btn card-button" onClick="getContentList('+ dispObj.display_id +')">View Display</button>'
+            +'<button class="btn card-button" onClick="getContent('+ dispObj.display_id +')">View Display</button>'
             +'<button class="btn edit-button" data-toggle="modal" data-target="#testModal" onclick="showEditModal('+ dispObj.display_id +')">Edit</button>' 
             + '</div>' 
             +'</div>'
@@ -207,6 +206,7 @@ function createRow(){
 }
 
 function getDisplayList(locationId) {
+  displayViewActive();
   /**
    * Clear the previous cards on the view
    */
@@ -285,5 +285,19 @@ function getDisplayList(locationId) {
     error: error => {
       console.log(error);
     }
+  });
+ }
+
+
+ function getContent(){
+  $("#locations-view").hide();
+  $("#displays-view").hide();
+  $("#content-view").show();
+
+  $('#summernote').summernote({
+    placeholder: 'Hello bootstrap 4',
+    tabsize: 2,
+    height: 200,
+    width: 200
   });
  }

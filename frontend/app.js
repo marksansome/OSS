@@ -53,6 +53,8 @@ app.get("/viewer-login", (req, res) => {
 });
 
 
+
+
   
 /**
  * Other http-requests
@@ -91,6 +93,21 @@ app.get("/content-list/:displayId", (req,res) => {
         res.status(500).send([]);
     });
 });
+
+/**
+ * Viewer page request-response
+ */
+app.get("/viewer-page/:displayId", (req,res) => {
+    axios.get('http://localhost:6000/viewer-page/' + req.params.displayId)
+      .then(response => {
+          res.send(response.data);
+      })
+      .catch(error => {
+          console.log(error);
+          res.status(500).send([]);
+      });
+  });
+
 
 app.listen(8000, () => {
   console.log("Example app listening on port 8000!");
