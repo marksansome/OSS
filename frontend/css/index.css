@@ -2,25 +2,18 @@ body {
     background-color: #f4cea5;
     margin: auto;
     text-align: center;
-    
 }
 
 /* Bordered form */
-form {
+#login-div {
     border: 3px solid #cc7a22;
-    width: 30%;
-    display:inline-block;
-    text-align: left;
 }
 
 /* Full-width inputs */
 input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    width: 50%;
     display: inline-block;
-    border: 1px solid #cc7a22;
-    box-sizing: border-box;
+    border: 2px solid #cc7a22;
 }
 
 /* Set a style for all buttons */
@@ -31,10 +24,10 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
 }
-#go-viewer {
-    width: 30%
+
+.btn-login{
+    width: 30%;
 }
 
 /* Add a hover effect for buttons */

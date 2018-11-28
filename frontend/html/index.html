@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="#" />
+
+    <!-- Bootsrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+
     <!-- Bootstrap js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
+  </head>
 
-    <link rel="stylesheet" href="/css">
-</head>
+  <body>
+    <div class="container">
+        <div class="col-md-3"></div>
 
-<div id="login-div" class="container">
-    <form action="/put-endpoint-here">
-        
-        <div class="container">
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-            <button type="submit">Login</button>
+        <div class="col-md-6" id="login-div">
+                <div  class="container"><h2>OpenSource Signage</h2></div>
+                <div class="form-group">
+                  <label for="username"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="username" class="form-control" required/>
+                </div>
+
+                <div class="form-group">
+                  <label for="password"><b>Password</b></label>
+                  <input
+                    type="password" placeholder="Enter Password" name="password" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <button id="login-btn" class="btn btn-login" onClick="userLogin()">Login</button>
+                </div>
         </div>
-    </form> 
-</div>
 
-<div class="container">
-    <button id="go-viewer" type="button">Go To Viewer</button>
-</div>
+        <div class="col-md-3"></div>
+    </div>
 
+    <div class="container">
+        <div class="form-group">
+            <button id="go-viewer" class="btn btn-login" type="button">Go To Viewer</button>
+        </div>
+    </div>
+  </body>
 </html>

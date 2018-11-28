@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  
   getLocationList();
   locationViewActive();
 
@@ -354,3 +353,21 @@ function getContentList(displayId){
     }
   });
 }
+
+/**
+ * Logout the user
+ */
+ function userLogout(){
+  $.ajax({
+    url: "/user-logout",
+    type: "GET",
+    dataType: "json",
+    processData: false,
+    success: success => {
+      $("html").load(success);
+    },
+    error: error => {
+      console.log(error);
+    }
+  });
+ }

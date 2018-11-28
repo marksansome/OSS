@@ -6,61 +6,51 @@ app.get("/locationlist", (req, res) => {
   let locationList = [
     {
       location_id: 1,
-      user_id: 100,
       location_name: "Gino's Pizzeria",
       description: "my description ... "
     },
     {
       location_id: 2,
-      user_id: 200,
       location_name: "Big Bear",
       description: "my description ... "
     },
     {
       location_id: 3,
-      user_id: 300,
       location_name: "Super Store",
       description: "my description ... "
     },
     {
       location_id: 3,
-      user_id: 300,
+      location_name: "Kelseys",
+      description: "my description ... "
+    },
+    {
+      location_id: 3,
       location_name: "Super Store",
       description: "my description ... "
     },
     {
       location_id: 3,
-      user_id: 300,
       location_name: "Super Store",
       description: "my description ... "
     },
     {
       location_id: 3,
-      user_id: 300,
       location_name: "Super Store",
       description: "my description ... "
     },
     {
       location_id: 3,
-      user_id: 300,
       location_name: "Super Store",
       description: "my description ... "
     },
     {
       location_id: 3,
-      user_id: 300,
       location_name: "Super Store",
       description: "my description ... "
     },
     {
       location_id: 3,
-      user_id: 300,
-      location_name: "Super Store",
-      description: "my description ... "
-    },
-    {
-      location_id: 3,
-      user_id: 300,
       location_name: "Super Store",
       description: "my description ... "
     }
