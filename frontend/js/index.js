@@ -1,7 +1,8 @@
 $(document).ready(function() {
   getLocationList();
-  locationViewActive();
-  
+  displayViewActive();
+  //locationViewActive();
+  $("#edit-display-modal").modal('show');
   $("#locations-button").click(function() {
     getLocationList();
     locationViewActive();
@@ -9,6 +10,15 @@ $(document).ready(function() {
 
   $("#displays-button").click(function() {
     displayViewActive();
+  });
+  
+  $("#add-button").click(function() {
+    if ( $("#locations-view").is(":visible")) {
+      $("#create-location-modal").modal('show');
+    } 
+    else if ( $("#displays-view").is(":visible")){
+      $("#create-display-modal").modal('show');
+    }
   });
 });
 
@@ -48,44 +58,6 @@ function contentViewActive() {
   $("#content-button").attr("disabled", true);
 }
 */
-function createModal(obj) {
-  console.log('Object received');
-  console.log(obj);
-
-  let modal =
-    '<div class="modal-dialog">' +
-    '<div class="modal-content">' +
-    '<div class="modal-header">' +
-    '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
-    '<h4 class="modal-title">' +
-    /* Modal title*/ +"</h4> </div>" +
-    '<div class="modal-body">' +
-    '<form action="' +
-    /* Add form action*/ +'">' +
-    '<div class="form-group">' +
-    '<label for="' +
-    /* location name */ +'">' +
-    /* Displayed label name*/ +"</label>" +
-    '<input type="text" class="form-control" id="' +
-    /* location name variable */ +'"></div>' +
-    '<div class="form-group">';
-  '<label for="' +
-    /* location address variable */ +'">' +
-    /* Displayed label name */ +"</label>" +
-    '<input type="text" class="form-control"id="' +
-    /* location address variable */ +'"></div>' +
-    '<button type="submit" class="btn btn-default">' +
-    /* submit label */ +"</button>" +
-    "</form>" +
-    "</div>" +
-    "</div>" +
-    "</div>";
-
-  let modelHolder = document.getElementById("testModal");
-  console.log(modelHolder);
-
-  $(modelHolder).append(modal);
-}
 
 
 let locationCardElement = {
