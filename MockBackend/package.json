@@ -1,0 +1,13 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Mock backend server for calls and placing data",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "ayush kaushik",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="#" />
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- Bootstrap js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- My custom css and js -->
+    <link rel="stylesheet" href="/css/logged.css">
+    <link rel="shortcut icon" href="http://www.iconj.com/ico/w/v/wvzsydc7rx.ico" type="image/x-icon"/>
+    <script src="/js/index.js"></script>
+    <title>OSS</title>
+
+
+    <!-- Editor summernote js and css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-fixed-top">
+    <!-- navigation bar -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <h1>OpenSource Signage</h1>
+        </div>
+        <ul class="nav navbar-nav navbar-right navbar-button">
+            <li>
+                <button class="btn btn-nav"> Settings</button>
+            </li>
+            <li>
+                <button class="btn btn-nav" onclick="userLogout()"> Logout</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Breadcrumb Bar at top of view -->
+    <div class="crumBar container-fluid btn-group">
+            <button id="locations-button" class="crumbButton">Locations</button>
+            <button id="crumb1" class="crumbTrail">></button>
+            <button id="displays-button" class="crumbButton">Displays</button>
+            <button id="crumb2" class="crumbTrail">></button>
+            <button id="content-button" class="crumbButton">Content</button>
+    </div>
+</nav>
+
+
+<!-- Locations View -->
+<div id="locations-view"class="view-panel">
+    <!-- Panel content where cards are placed -->
+    <div class="panel-body" id="location-panel"></div>
+    
+</div>
+
+<!-- Display View -->
+<div id="displays-view" class="view-panel">
+    <!-- Panel content where cards are placed -->
+    <div class="panel-body" id="display-panel"></div>
+</div>
+
+<div id="edit-content" class="view-panel">
+<div id="summernote">
+
+</div>
+</div>
+
+<!-- <button id="add-button" onclick="showCreateLocationModal()" class="fas fa-plus-circle fa-7x"></button> -->
+
+<!-- This shows both create location and create display modals -->
+<button id="add-button" onclick="showCreateModal()" class="fas fa-plus-circle fa-7x"></button>
+
+
+
+
+
+<!-- Create Location Modal -->
+<div id="create-location-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create New Location</h4> </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label for=createLocationName class="modal-label">Name:</label>
+                        <input type="text" class="form-control" id="createLocationName" required>
+                    </div>
+                    <div class="form-group">
+                            <label for=createLocationAddress class="modal-label">Address:</label>
+                            <input type="text" class="form-control" id="createLocationAddress">
+                        </div>
+                    <div class="form-group">
+                        <label for=createLocationDesc class="modal-label">Description:</label>
+                        <input type="text" class="form-control" id="createLocationDesc">
+                    </div>
+                    <button class="btn modal-submit-btn" onclick="postNewLocation()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Display Modal -->
+<div id="create-display-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create New Display</h4> </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for=createDisplayName class="modal-label">Name:</label>
+                            <input type="text" class="form-control" id="createDisplayName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for=createDisplayDesc>Description:</label>
+                            <input type="text" class="form-control" id="createDisplayDesc">
+                        </div>
+                        <button type="submit" class="btn modal-submit-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Edit Location Modal -->
+<div id="edit-location-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Location</h4> </div>
+                <div class="modal-body">
+                    <form action="/edit-location-endpoint">
+                        <div class="form-group">
+                            <label for=editLocationName>New location Name:</label>
+                            <input type="text" class="form-control" id="editLocationName" required>
+                        </div>
+                        <div class="form-group">
+                                <label for=createLocationDesc>Location Address:</label>
+                                <input type="text" class="form-control" id="editLocationAddress">
+                            </div>
+                        <div class="form-group">
+                            <label for=createLocationDesc>Location Description:</label>
+                            <input type="text" class="form-control" id="editLocationDesc">
+                        </div>
+                        <button type="submit" class="btn modal-submit-btn">Save</button>
+                        <button id="delete-location-button" type="button" class="btn btn-danger">Delete Location</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- edit Display Modal -->
+<div id="edit-display-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Display</h4> </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for=editDisplayName>Display Name:</label>
+                            <input type="text" class="form-control" id="editDisplayName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for=editDisplayDesc>Display Description:</label>
+                            <input type="text" class="form-control" id="editDisplayDesc">
+                        </div>
+                        <button type="submit" class="btn modal-submit-btn">Submit</button>
+                        <button id="delete-display-button" type="button" class="btn btn-danger">Delete Display</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

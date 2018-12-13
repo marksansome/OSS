@@ -1,0 +1,199 @@
+body {
+    width: 100%;
+    background-color: #f4cea5;
+}
+
+/**
+* Navigation bar starts
+*/
+
+/**
+* This gets the Open Source Signage main div
+*/
+.navbar > div:first-of-type {
+    background-color: #f39735;
+    color: #FFFFFF;
+}
+
+.navbar-brand {
+    margin: 0px;
+    color: #FFFFFF;
+    font-size: 30px;
+}
+
+.navbar-button {
+    margin: 20px;
+}
+
+.navbar-button button {
+    margin: 10px;
+}
+
+.btn-nav {
+    font-size: 20px;
+    color: #FFFFFF;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 12px;
+    background-color: #edac68;
+    border: 2px solid #FFFFFF;
+}
+
+.btn-nav:hover {
+    color: #FFFFFF;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Navigation bar ends */
+
+/* Beginning of breadCrumb bar style */
+.navbar > div:nth-of-type(2){
+    width: 100%;
+    background: #f7ad5d;
+}
+
+.crumbBar {
+    background: #f7ad5d;
+    padding-top: 200px;
+}
+
+.crumbButton {
+    font-size: 24px;
+    padding: 8px;
+    color: white;
+    border: none;
+    background: none;
+}
+
+.crumbButton:hover {
+    color: #b77126;
+}
+
+.crumbButton:disabled {
+    color: #764c0c;
+}
+
+
+.crumbTrail {
+    pointer-events: none;
+    font-size: 24px;
+    padding: 8px;
+    color: white;
+    border: none;
+    background: none;
+}
+
+
+
+/* End of breadCrumb bar style */
+
+.panel-body {
+    width: 100%;
+    height: auto;
+    background-color: none;
+}
+
+/* Beginning of card style */
+
+.card {
+    width: 240px;
+    padding: 20px;
+    background-color: azure;
+    box-shadow: 4px 4px 4px grey;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.card-body {
+    display: inline-block;
+}
+
+.card-button {
+    background: none;
+    border: 2px solid #3AAF5E;
+    color: #FFFFFF;
+    background-color: #3FCE6B;
+    float: center;
+    transition: 0.2s;
+    margin: 4px;
+    width: 110px;
+}
+
+.card-button:hover {
+    color: #FFFFFF;
+    background-color: #3AAF5E;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.edit-button {
+    float: center;
+    background: none;
+    border: 2px solid #f49e42;
+    background-color: #edac68;
+    color: #FFFFFF;
+    transition: 0.2s;
+    margin: 4px;
+    width: 110px;
+}
+
+.edit-button:hover {
+    color: #FFFFFF;
+    background-color: #f49e42;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+#add-button {
+    position: fixed;
+    bottom: 4%;
+    right: 2%;
+    background: none;
+    border: none;
+    color: #f39735;
+}
+#add-button:hover {
+    color: #a15d14;
+}
+
+
+.location-icon {
+    position: relative;
+    bottom: 0;
+    left: 70%;
+}
+
+/* End of card style */
+.view-panel {
+    padding-top: 150px;
+}
+
+
+/*   MODALS    */
+.modal-submit-btn{
+    float: center;
+    background: none;
+    border: 2px solid #f49e42;
+    background-color: #edac68;
+    color: #FFFFFF;
+    transition: 0.2s;
+    margin: 4px;
+    width: 110px;
+}
+
+.modal-submit-btn:hover{
+    color: #FFFFFF;
+    background-color: #f49e42;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-header{
+    background-color:#edac68;;
+    color: #FFFFFF;
+}
+
+#edit-content {
+    width: 100%;
+}
+.summernote {
+    margin-top: 200px;
+}
